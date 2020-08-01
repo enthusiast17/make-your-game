@@ -9,12 +9,12 @@ const turns = (tetro) => {
 
 // select returns selected proper an ixj array
 const select = (tetro) => {
-    if (tetro.length == 3 || tetro.length == 2) return tetro.length == 3 ? turn3X2(tetro) : turn2X3(tetro)
+    if (tetro.length === 3 || tetro.length === 2) return tetro.length === 3 ? turn3X2(tetro) : turn2X3(tetro)
     return tetro.length === 4 ? turn4X1(tetro) : turn1x4(tetro)
 }
 
 // turn1x4 returns an 4x1 array
-const turn1x4 = (tetro) => tetro.reduce((acc, element) => acc.push([element]) && acc, [])
+const turn1x4 = (tetro) => tetro.reduce((acc, [a, b, c, d]) => acc.push([a], [b], [c], [d]) && acc, [])
 
 // turn4x1 returns an 1x4 array
 const turn4X1 = (tetro) => tetro.reduce((acc, element) => acc[0].push(...element) && acc, [[]])

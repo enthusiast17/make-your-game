@@ -4,18 +4,20 @@
     </head>
     <body>
         <script type="module">
+            // FIX IT ALL
             import {drawBoard, setBoard} from './board.js'
             import {allTetroes} from './tetromino.js'
             drawBoard()
             const board = setBoard()
             const tetroes = allTetroes()
-            const tetro = tetroes[2]
+            let tetr = 0
+            const tetro = tetroes[tetr]
+            tetro.turn()
             const animation = () => {
-                if (board.isAvailable(tetro.get())) {
+                if (board.checkDownSpace(tetro.get()) && board.down()) {
                     if (!board.isFirstRow()) board.removeTetro(tetro.get())
                     board.addTetro(tetro.get())
-                    board.down(tetro.get())
-                    setTimeout(() => window.requestAnimationFrame(animation), 1200)
+                    setTimeout(() => window.requestAnimationFrame(animation), 20)
                 } else {
                     if (board.isFirstRow()) {
                         window.cancelAnimationFrame(animation)
@@ -23,7 +25,9 @@
                         console.log("STOPPED")
                     } else {
                         board.start()
-                        tetro.turn()
+                        if (tetr === tetroes.length - 1) tetr = 0
+                        else tetr += 1
+                        board.currentCol += 1
                         window.requestAnimationFrame(animation)
                     }   
                 }
@@ -34,7 +38,7 @@
                     if (board.currentCol > 0) board.currentCol -= 1
                 }
                 if (event.code === 'ArrowRight') {
-                    if (board.currentCol + tetro.get()[0].length < board.state.length) board.currentCol += 1
+                    if (board.currentCol + tetroes[tetr].get()[0].length < board.state.length) board.currentCol += 1
                 }
             })
         </script>

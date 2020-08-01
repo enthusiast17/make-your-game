@@ -23,55 +23,58 @@ export const drawBoard = (rowSize = 20, colSize = 10) => {
 export const setBoard = (rowSize = 20, colSize = 10) => {
     const board = {
         currentRow: 0,
-        currentCol: 3,
-        state: Array(rowSize).fill(Array(colSize).fill(0))
+        currentCol: 3,  
+        state: Array(rowSize).fill(0).reduce((acc, element) => {
+            acc.push(Array(colSize).fill(0).reduce((acc, _) => acc.push(0) && acc, []))
+            return acc
+        }, [])
     }
+    
     board.start = () => {
         board.currentRow = 0
         board.currentCol = 3
     }
+
     board.isFirstRow = () => board.currentRow === 0
-    board.down = (tetro) => board.currentRow += tetro.length
+
+    board.down = () => board.currentRow += 1
+
     board.addTetro = (tetro) => {
-        board.state = board.state.map((element, indexRow) => {
-            if (indexRow >= board.currentRow && indexRow <= board.currentRow + tetro.length - 1) {
-                return element.map((element, indexCol) => {
-                    if (indexCol >= board.currentCol && indexCol <= board.currentCol + tetro[0].length - 1) {
-                        if (tetro[indexRow - board.currentRow][indexCol - board.currentCol] === 1) {
-                            document.getElementById(`${indexRow}-${indexCol}`).style.background = 'red'
-                            return tetro[indexRow - board.currentRow][indexCol - board.currentCol]
-                        }
-                        return element
-                    }
-                    return element
-                })
-            }
-            return element
+        tetro.forEach((elementRow, indexRow) => {
+            elementRow.forEach((elementCol, indexCol) => {
+                if (elementCol === 1) {
+                    document.getElementById(`${board.currentRow + indexRow}-${board.currentCol + indexCol}`).style.background = 'red'
+                    board.state[board.currentRow + indexRow][board.currentCol + indexCol] = elementCol
+                }
+            })
         })
     }
-    // TO-DO: FIX IT
-    board.isAvailable = (tetro) => tetro.every((elementRow, indexRow) => {
-        if (board.currentRow + indexRow >= board.state.length) return false
-        return elementRow.every((elementCol, indexCol) => {
-            if (board.currentCol + indexCol >= board.state[0].length) return false
-            if (elementCol === 1 && board.state[board.currentRow + indexRow][board.currentCol + indexCol] !== 0) return false
-            return true
-        })
-    })
+
+    board.checkDownSpace = (tetro) => tetro.slice(-1).every((elementRow, indexRow) => elementRow.every((elementCol, indexCol) => {
+        if (elementCol === 0) {
+            if (board.currentRow + (tetro.length - 1) + indexRow >= board.state.length) return false
+            if (board.state[board.currentRow + (tetro.length - 1) + indexRow][board.currentCol + indexCol] === 1) return false 
+        } else {
+            if (board.currentRow + tetro.length + indexRow >= board.state.length) return false
+            if (board.state[(board.currentRow + tetro.length) + indexRow][board.currentCol + indexCol] === 1) return false
+        }
+        return true
+    }))
+
+    // board.checkStartSpace = (tetro) => tetro.every((elementRow, indexRow) => elementRow.every((elementCol, indexCol) => {
+    //     if (elementCol === 1 && board.state[board.currentRow + indexRow][board.currentCol + indexCol] === 1) return false
+    //     return true
+    // }))
 
     // TO-DO: FIX IT
-    board.removeTetro = (tetro, row = tetro.length, col) => {
-        board.state = board.state.map((element, indexRow) => {
-            if (indexRow >= (board.currentRow - (tetro.length)) && indexRow <= board.currentRow + (tetro.length - 1)) {
-                return element.map((element, indexCol) => {
-                    if (indexCol >= (board.currentCol - (tetro[0].length - 1)) && indexCol <= (board.currentCol + (tetro[0].length - 1))) {
-                        document.getElementById(`${indexRow}-${indexCol}`).style.background = 'black'
-                        return 0
-                    }
-                    return element
-                })
-            }
-            return element
+    board.removeTetro = (tetro) => {
+        tetro.forEach((elementRow, indexRow) => {
+            elementRow.forEach((elementCol, indexCol) => {
+                if (elementCol === 1) {
+                    document.getElementById(`${(board.currentRow - 1) + indexRow}-${board.currentCol + indexCol}`).style.background = 'black'
+                    board.state[(board.currentRow - 1) + indexRow][board.currentCol + indexCol] = 0
+                }
+            })
         })
     }
     return board
