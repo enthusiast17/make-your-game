@@ -39,6 +39,10 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
 
     board.down = () => board.currentRow += 1
 
+    board.left = () => board.currentCol = board.currentCol > 0 ? board.currentCol - 1 : 0
+
+    board.right = () => board.currentCol = board.currentCol < colSize - 1 ? board.currentCol + 1 : colSize - 1
+
     board.addTetro = (tetro) => {
         tetro.forEach((elementRow, indexRow) => {
             elementRow.forEach((elementCol, indexCol) => {
@@ -48,8 +52,9 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
                 }
             })
         })
-    }
+    }  
 
+    // TO-DO: FIX IT DO NOT CHECK ONLY LAST ITEMS
     board.checkDownSpace = (tetro) => tetro.slice(-1).every((elementRow, indexRow) => elementRow.every((elementCol, indexCol) => {
         if (elementCol === 0) {
             if (board.currentRow + (tetro.length - 1) + indexRow >= board.state.length) return false
@@ -61,18 +66,12 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         return true
     }))
 
-    // board.checkStartSpace = (tetro) => tetro.every((elementRow, indexRow) => elementRow.every((elementCol, indexCol) => {
-    //     if (elementCol === 1 && board.state[board.currentRow + indexRow][board.currentCol + indexCol] === 1) return false
-    //     return true
-    // }))
-
-    // TO-DO: FIX IT
-    board.removeTetro = (tetro) => {
+    board.removeTetro = (tetro, row = board.currentRow - 1, col = board.currentCol) => {
         tetro.forEach((elementRow, indexRow) => {
             elementRow.forEach((elementCol, indexCol) => {
                 if (elementCol === 1) {
-                    document.getElementById(`${(board.currentRow - 1) + indexRow}-${board.currentCol + indexCol}`).style.background = 'black'
-                    board.state[(board.currentRow - 1) + indexRow][board.currentCol + indexCol] = 0
+                    document.getElementById(`${row + indexRow}-${col + indexCol}`).style.background = 'black'
+                    board.state[row + indexRow][col + indexCol] = 0
                 }
             })
         })
