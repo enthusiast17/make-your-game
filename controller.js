@@ -13,7 +13,7 @@ const selectControl = (board, tetro, code) => {
             right(board, tetro)
             break
         case 'ArrowUp':
-            turn(tetro, board)
+            turn(board, tetro)
             break
         default:
             return
@@ -32,7 +32,7 @@ const right = (board, tetro) => {
     board.right()
 }
 
-const turn = (tetro, board) => {
+const turn = (board, tetro) => {
     board.removeTetro(tetro.get(), board.currentRow, board.currentCol)
     if (tetro.get()[0].length === 2 && !(board.currentCol + tetro.get()[0].length + 1 <= board.state[0].length - 1)) board.left()
     tetro.turn()

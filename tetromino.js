@@ -33,6 +33,7 @@ const setTetro = (arr) => {
     return tetro
 }
 
+// possible tetrominoes
 const tetroes = [
     [[1, 1, 1, 1]],
     [[1, 1], [1, 1]],
