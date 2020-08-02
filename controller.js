@@ -34,5 +34,6 @@ const right = (board, tetro) => {
 
 const turn = (tetro, board) => {
     board.removeTetro(tetro.get(), board.currentRow, board.currentCol)
+    if (tetro.get()[0].length === 2 && !(board.currentCol + tetro.get()[0].length + 1 <= board.state[0].length - 1)) board.left()
     tetro.turn()
 }

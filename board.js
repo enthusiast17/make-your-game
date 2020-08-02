@@ -54,15 +54,13 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         })
     }  
 
-    // TO-DO: FIX IT DO NOT CHECK ONLY LAST ITEMS
-    board.checkDownSpace = (tetro) => tetro.slice(-1).every((elementRow, indexRow) => elementRow.every((elementCol, indexCol) => {
-        if (elementCol === 0) {
-            if (board.currentRow + (tetro.length - 1) + indexRow >= board.state.length) return false
-            if (board.state[board.currentRow + (tetro.length - 1) + indexRow][board.currentCol + indexCol] === 1) return false 
-        } else {
-            if (board.currentRow + tetro.length + indexRow >= board.state.length) return false
-            if (board.state[(board.currentRow + tetro.length) + indexRow][board.currentCol + indexCol] === 1) return false
-        }
+    board.checkDownSpace = (tetro) => tetro.every((elementRow, indexRow, arrRow) => elementRow.every((elementCol, indexCol) => {
+        if (board.currentRow + indexRow + 1 >= board.state.length) return false
+        if (elementCol === 1 && indexRow + 1 < arrRow.length && 
+            arrRow[indexRow + 1][indexCol] !== 1 &&
+            board.state[board.currentRow + indexRow + 1][board.currentCol + indexCol] === 1) return false
+        if (indexRow === arrRow.length - 1 && 
+            elementCol === 1 && board.state[board.currentRow + indexRow + 1][board.currentCol + indexCol] === 1) return false
         return true
     }))
 
