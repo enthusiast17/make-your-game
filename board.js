@@ -62,7 +62,19 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
             arrRow[indexRow + 1][indexCol] !== 1 &&
             board.state[board.currentRow + indexRow + 1][board.currentCol + indexCol] === 1) return false
         if (indexRow === arrRow.length - 1 && 
-            elementCol === 1 && board.state[board.currentRow + indexRow + 1][board.currentCol + indexCol] === 1) return false
+            elementCol === 1 && 
+            board.state[board.currentRow + indexRow + 1][board.currentCol + indexCol] === 1) return false
+        return true
+    }))
+
+    board.checkRightSpace = (tetro) => tetro.every((elementRow, indexRow, arrRow) => elementRow.every((elementCol, indexCol, arrCol) => {
+        if (board.currentCol + indexCol + 1 >= board.state[0].length) return false
+        if (elementCol === 1 && indexCol + 1 < arrCol.length &&
+            arrCol[indexCol] !== 1 &&
+            board.state[board.currentRow + indexRow][board.currentCol + indexCol + 1] === 1) return false
+        if (indexCol === arrCol.length - 1 &&
+            elementCol === 1 && 
+            board.state[board.currentRow + indexRow][board.currentCol + indexCol + 1] === 1) return false
         return true
     }))
 
