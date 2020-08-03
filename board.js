@@ -5,12 +5,16 @@ export const drawBoard = (rowSize = 20, colSize = 10) => {
     Array(rowSize).fill(0).forEach((_, acc) => {
         const boxes = Array(colSize).fill(0).map((element, index) => {
             const box = document.createElement('div')
-            box.id = `${acc}-${index}`
+            const innerBox = document.createElement('div')
+            innerBox.id = `${acc}-${index}`
+            innerBox.style.height = '20px'
+            innerBox.style.width = '20px'
             box.style.display = 'inline-block'
             box.style.height = '25px'
             box.style.width = '25px'
             box.style.background = 'black'
-            box.style.border = '2px solid gray'
+            box.style.border = '2px solid gray' // Consider about this
+            box.appendChild(innerBox)
             return box
         })
         const row = document.createElement('div')
@@ -49,7 +53,9 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         tetro.forEach((elementRow, indexRow) => {
             elementRow.forEach((elementCol, indexCol) => {
                 if (elementCol === 1) {
-                    document.getElementById(`${board.currentRow + indexRow}-${board.currentCol + indexCol}`).style.background = color
+                    const box = document.getElementById(`${board.currentRow + indexRow}-${board.currentCol + indexCol}`)
+                    box.style.background = color
+                    box.style.borderStyle = 'outset'
                     board.state[board.currentRow + indexRow][board.currentCol + indexCol] = elementCol
                 }
             })
@@ -93,7 +99,9 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         tetro.forEach((elementRow, indexRow) => {
             elementRow.forEach((elementCol, indexCol) => {
                 if (elementCol === 1) {
-                    document.getElementById(`${row + indexRow}-${col + indexCol}`).style.background = 'black'
+                    const box = document.getElementById(`${row + indexRow}-${col + indexCol}`)
+                    box.style.background = 'black'
+                    box.style.borderStyle = 'none'
                     board.state[row + indexRow][col + indexCol] = 0
                 }
             })
