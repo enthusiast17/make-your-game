@@ -28,7 +28,7 @@ export const drawBoard = (rowSize = 20, colSize = 10) => {
 // setBoard return a board's object with funcs
 export const setBoard = (rowSize = 20, colSize = 10) => {
     const board = {
-        currentRow: 0,
+        currentRow: -1,
         currentCol: 3,  
         state: Array(rowSize).fill(0).reduce((acc, element) => {
             acc.push(Array(colSize).fill(0).reduce((acc, _) => acc.push(0) && acc, []))
@@ -36,9 +36,12 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         }, [])
     }
     
-    board.start = () => {
-        board.currentRow = 0
-        board.currentCol = 3
+    board.setCurrentRow = (row) => {
+        board.currentRow = row
+    }
+
+    board.setCurrentCol = (col) => {
+        board.currentCol = col
     }
 
     board.isFirstRow = () => board.currentRow === 0
@@ -52,7 +55,7 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
     board.addTetro = (tetro, color) => {
         tetro.forEach((elementRow, indexRow) => {
             elementRow.forEach((elementCol, indexCol) => {
-                if (elementCol === 1) {
+                if (elementCol === 1 && board.currentRow + indexRow >= 0) {
                     const box = document.getElementById(`${board.currentRow + indexRow}-${board.currentCol + indexCol}`)
                     box.style.background = color
                     box.style.borderStyle = 'outset'
@@ -98,7 +101,7 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
     board.removeTetro = (tetro, row = board.currentRow - 1, col = board.currentCol) => {
         tetro.forEach((elementRow, indexRow) => {
             elementRow.forEach((elementCol, indexCol) => {
-                if (elementCol === 1) {
+                if (elementCol === 1 && row + indexRow >= 0) {
                     const box = document.getElementById(`${row + indexRow}-${col + indexCol}`)
                     box.style.background = 'black'
                     box.style.borderStyle = 'none'

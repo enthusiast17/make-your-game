@@ -15,6 +15,9 @@ const selectControl = (board, tetro, code) => {
         case 'ArrowUp':
             turn(board, tetro)
             break
+        case 'ArrowDown':
+            down(board, tetro)
+            break
         default:
             return
     }
@@ -31,6 +34,13 @@ const right = (board, tetro) => {
     if (!board.checkRightSpace(tetro.get())) return
     board.removeTetro(tetro.get(), board.currentRow, board.currentCol)
     board.right()
+    board.addTetro(tetro.get(), tetro.color)
+}
+
+const down = (board, tetro) => {
+    if (!board.checkDownSpace(tetro.get())) return
+    board.removeTetro(tetro.get(), board.currentRow, board.currentCol)
+    board.down()
     board.addTetro(tetro.get(), tetro.color)
 }
 

@@ -8,30 +8,15 @@
             import {drawBoard, setBoard} from './board.js'
             import {allTetroes} from './tetromino.js'
             import {setController} from './controller.js'
+            import {setGame} from './game.js'
             drawBoard()
             const board = setBoard()
             const tetroes = allTetroes()
-            let tetr = 3
+            let tetr = 5
             const tetro = tetroes[tetr]
-            const animation = () => {
-                if (board.checkDownSpace(tetro.get()) && board.down()) {
-                    console.log(board.currentRow + " " + board.currentCol)
-                    if (!board.isFirstRow()) board.removeTetro(tetro.get())
-                    board.addTetro(tetro.get(), tetro.color)
-                    setTimeout(() => window.requestAnimationFrame(animation), 1000)
-                } else {
-                    if (board.isFirstRow()) {
-                        window.cancelAnimationFrame(animation)
-                        console.log(board.state)
-                        console.log("STOPPED")
-                    } else {
-                        board.start()
-                        window.requestAnimationFrame(animation)
-                    }   
-                }
-            }
-            window.requestAnimationFrame(animation)
+            const game = setGame(board, tetro)
             setController(board, tetro)
+            game.start()
         </script>
     </body>
 </html>
