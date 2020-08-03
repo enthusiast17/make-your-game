@@ -21,7 +21,7 @@ const selectControl = (board, tetro, code) => {
 }
 
 const left = (board, tetro) => {
-    if (!(board.currentCol > 0)) return
+    if (!board.checkLeftSpace(tetro.get())) return
     board.removeTetro(tetro.get(), board.currentRow, board.currentCol)
     board.left()
     board.addTetro(tetro.get(), tetro.color)
