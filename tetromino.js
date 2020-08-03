@@ -26,8 +26,8 @@ const turn3X2 = (tetro) => tetro.reduce((acc, [a, b]) => acc[0].unshift(a) && ac
 const turn2X3 = (tetro) => tetro.reduce((acc, [a, b, c]) => acc[0].unshift(a) && acc[1].unshift(b) && acc[2].unshift(c) && acc, [[], [], []])
 
 // setTetro returns an object with turn and get functions
-const setTetro = (arr) => {
-    const tetro = {status: 1, tetroes: turns(arr)}
+const setTetro = (arr, color) => {
+    const tetro = {status: 1, color: color, tetroes: turns(arr)}
     tetro.turn = () => tetro.status = tetro.status !== 4 ? tetro.status + 1 : 1
     tetro.get = () => tetro.tetroes[tetro.status - 1]
     return tetro
@@ -35,14 +35,14 @@ const setTetro = (arr) => {
 
 // possible tetrominoes
 const tetroes = [
-    [[1, 1, 1, 1]],
-    [[1, 1], [1, 1]],
-    [[1, 1, 1], [1, 0, 0]],
-    [[1, 1, 1], [0, 0, 1]],
-    [[0, 1, 1], [1, 1, 0]],
-    [[1, 1, 0], [0, 1, 1]],
-    [[1, 1, 1], [0, 1, 0]],
+    {arr: [[1, 1, 1, 1]], color: 'sky'},
+    {arr: [[1, 1], [1, 1]], color: 'yellow'},
+    {arr: [[1, 1, 1], [1, 0, 0]], color: 'orange'},
+    {arr: [[1, 1, 1], [0, 0, 1]], color: 'blue'},
+    {arr: [[0, 1, 1], [1, 1, 0]], color: 'green'},
+    {arr: [[1, 1, 0], [0, 1, 1]], color: 'red'},
+    {arr: [[1, 1, 1], [0, 1, 0]], color: 'purple'},
 ]
 
 // allTetroes returns an array of tetromino object
-export const allTetroes = () => tetroes.map((element) => setTetro(element))
+export const allTetroes = () => tetroes.map(({arr, color}) => setTetro(arr, color))

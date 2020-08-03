@@ -1,3 +1,4 @@
+// drawBoard draws board for tetris
 export const drawBoard = (rowSize = 20, colSize = 10) => {
     const container = document.createElement('div')
     const board = document.createElement('div')
@@ -20,6 +21,7 @@ export const drawBoard = (rowSize = 20, colSize = 10) => {
     document.body.appendChild(container)
 }
 
+// setBoard return a board's object with funcs
 export const setBoard = (rowSize = 20, colSize = 10) => {
     const board = {
         currentRow: 0,
@@ -43,11 +45,11 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
 
     board.right = () => board.currentCol = board.currentCol < colSize - 1 ? board.currentCol + 1 : colSize - 1
 
-    board.addTetro = (tetro) => {
+    board.addTetro = (tetro, color) => {
         tetro.forEach((elementRow, indexRow) => {
             elementRow.forEach((elementCol, indexCol) => {
                 if (elementCol === 1) {
-                    document.getElementById(`${board.currentRow + indexRow}-${board.currentCol + indexCol}`).style.background = 'red'
+                    document.getElementById(`${board.currentRow + indexRow}-${board.currentCol + indexCol}`).style.background = color
                     board.state[board.currentRow + indexRow][board.currentCol + indexCol] = elementCol
                 }
             })

@@ -17,7 +17,7 @@
                 if (board.checkDownSpace(tetro.get()) && board.down()) {
                     console.log(board.currentRow + " " + board.currentCol)
                     if (!board.isFirstRow()) board.removeTetro(tetro.get())
-                    board.addTetro(tetro.get(), (r) => r - 1, (c) => c)
+                    board.addTetro(tetro.get(), tetro.color)
                     setTimeout(() => window.requestAnimationFrame(animation), 1000)
                 } else {
                     if (board.isFirstRow()) {
