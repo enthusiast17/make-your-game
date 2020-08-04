@@ -4,18 +4,19 @@
     </head>
     <body>
         <script type="module">
-            // FIX IT ALL
             import {drawBoard, setBoard} from './board.js'
             import {allTetroes} from './tetromino.js'
             import {setController} from './controller.js'
             import {setGame} from './game.js'
+            import {setRandomizer} from './randomizer.js'
             drawBoard()
             const board = setBoard()
             const tetroes = allTetroes()
-            let tetr = 5
-            const tetro = tetroes[tetr]
-            const game = setGame(board, tetro)
-            setController(board, tetro)
+            const randomizer = setRandomizer(tetroes)
+            if (randomizer.current.get().lenght === 3) board.setCurrentRow(-2)
+            else board.setCurrentRow(-1)
+            const game = setGame(board, randomizer)
+            setController(board, randomizer)
             game.start()
         </script>
     </body>

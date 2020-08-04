@@ -30,12 +30,15 @@ const setTetro = (arr, color) => {
     const tetro = {status: 1, color: color, tetroes: turns(arr)}
     tetro.turn = () => tetro.status = tetro.status !== 4 ? tetro.status + 1 : 1
     tetro.get = () => tetro.tetroes[tetro.status - 1]
+    tetro.backup = () => {
+        tetro.status = 1
+    }
     return tetro
 }
 
 // possible tetrominoes
 const tetroes = [
-    {arr: [[1, 1, 1, 1]], color: 'sky'},
+    {arr: [[1, 1, 1, 1]], color: 'aqua'},
     {arr: [[1, 1], [1, 1]], color: 'yellow'},
     {arr: [[1, 1, 1], [1, 0, 0]], color: 'orange'},
     {arr: [[1, 1, 1], [0, 0, 1]], color: 'blue'},

@@ -1,5 +1,6 @@
-export const setController = (board, tetro) => {
+export const setController = (board, randomizer) => {
     document.body.addEventListener('keydown', (event) => {
+        const tetro = randomizer.current
         selectControl(board, tetro, event.code)
     })
 }

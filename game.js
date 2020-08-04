@@ -1,11 +1,11 @@
-export const setGame = (board, tetro) => {
+// setGame returns an object with start and stop game functions
+export const setGame = (board, randomizer) => {
     let timeout
     const start = () => {
-        if (board.checkDownSpace(tetro.get())) {
-            console.log(board.currentRow + " " + board.currentCol)
+        if (board.checkDownSpace(randomizer.current.get())) {
             board.down()
-            board.removeTetro(tetro.get())
-            board.addTetro(tetro.get(), tetro.color)
+            board.removeTetro(randomizer.current.get())
+            board.addTetro(randomizer.current.get(), randomizer.current.color)
             timeout = setTimeout(() => window.requestAnimationFrame(start), 1000)
         } else {
             if (board.isFirstRow()) {
@@ -13,7 +13,10 @@ export const setGame = (board, tetro) => {
                 console.log(board.state)
                 console.log("STOPPED")
             } else {
-                board.setCurrentRow(-1)
+                randomizer.current.backup()
+                randomizer.random()
+                if (randomizer.current.get().lenght === 3) board.setCurrentRow(-2)
+                else board.setCurrentRow(-1)
                 board.setCurrentCol(3)
                 window.requestAnimationFrame(start)
             }   
