@@ -1,6 +1,20 @@
 <html>
     <head>
-
+        <style>
+            @font-face {
+                font-family: 'Arcade Classic';
+                src: url('fonts/ARCADECLASSIC.TTF');
+            }
+            html {
+                align-items: center;
+                font-family: 'Arcade Classic';
+            }
+            body {
+                display: flex;
+                flex-direction: row; 
+                justify-content: center; 
+            }
+        </style>
     </head>
     <body>
         <script type="module">
@@ -9,7 +23,8 @@
             import {setController} from './controller.js'
             import {setGame} from './game.js'
             import {setRandomizer} from './randomizer.js'
-            drawBoard()
+            drawBoard('board') // Board
+            drawBoard('next-tetromino', 2, 4, 'Next') // Next
             const board = setBoard()
             const tetroes = allTetroes()
             const randomizer = setRandomizer(tetroes)

@@ -1,12 +1,36 @@
+const border = (size) => {
+    const boxes = Array(size).fill(0).map(() => {
+        const box = document.createElement('div')
+        box.style.height = '25px'
+        box.style.width = '25px'
+        box.style.background = 'gray'
+        box.style.border = '2px outset'
+        return box
+    })
+    const border = document.createElement('div')
+    border.style.display = 'inline-block'
+    boxes.forEach(element => border.appendChild(element))
+    return border
+}
+
 // drawBoard draws board for tetris
-export const drawBoard = (rowSize = 20, colSize = 10) => {
+export const drawBoard = (id = 'board', rowSize = 20, colSize = 10, title = '') => {
     const container = document.createElement('div')
+    container.id = id
+    const header = document.createElement('p')
+    header.style.margin = '0px'
+    header.style.textAlign = 'center'
+    header.style.fontSize = '28px'
+    header.textContent = title
+    container.appendChild(header)
+    container.appendChild(border(rowSize))
     const board = document.createElement('div')
+    board.style.display = 'inline-block'
     Array(rowSize).fill(0).forEach((_, acc) => {
         const boxes = Array(colSize).fill(0).map((element, index) => {
             const box = document.createElement('div')
             const innerBox = document.createElement('div')
-            innerBox.id = `${acc}-${index}`
+            innerBox.id = `${id}-${acc}-${index}`
             innerBox.style.height = '20px'
             innerBox.style.width = '20px'
             box.style.display = 'inline-block'
@@ -22,6 +46,7 @@ export const drawBoard = (rowSize = 20, colSize = 10) => {
         board.appendChild(row)
     })
     container.appendChild(board)
+    container.appendChild(border(rowSize))
     document.body.appendChild(container)
 }
 
@@ -56,7 +81,7 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         tetro.forEach((elementRow, indexRow) => {
             elementRow.forEach((elementCol, indexCol) => {
                 if (elementCol === 1 && board.currentRow + indexRow >= 0) {
-                    const box = document.getElementById(`${board.currentRow + indexRow}-${board.currentCol + indexCol}`)
+                    const box = document.getElementById(`board-${board.currentRow + indexRow}-${board.currentCol + indexCol}`)
                     box.style.background = color
                     box.style.borderStyle = 'outset'
                     board.state[board.currentRow + indexRow][board.currentCol + indexCol] = elementCol
@@ -102,7 +127,7 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         tetro.forEach((elementRow, indexRow) => {
             elementRow.forEach((elementCol, indexCol) => {
                 if (elementCol === 1 && row + indexRow >= 0) {
-                    const box = document.getElementById(`${row + indexRow}-${col + indexCol}`)
+                    const box = document.getElementById(`board-${row + indexRow}-${col + indexCol}`)
                     box.style.background = 'black'
                     box.style.borderStyle = 'none'
                     board.state[row + indexRow][col + indexCol] = 0
