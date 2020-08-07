@@ -103,7 +103,7 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
 
     board.checkLeftSpace = (tetro) => tetro.every((elementRow, indexRow, arrRow) => elementRow.every((elementCol, indexCol, arrCol) => {
         if (board.currentCol + indexCol - 1 < 0) return false
-        if (elementCol === 1 && indexCol - 1 > 0 &&
+        if (elementCol === 1 && indexCol - 1 >= 0 &&
             arrCol[indexCol - 1] !== 1 &&
             board.state[board.currentRow + indexRow][board.currentCol + indexCol - 1] === 1) return false
         if (elementCol === 1 &&
