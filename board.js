@@ -104,10 +104,10 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
     board.checkLeftSpace = (tetro) => tetro.every((elementRow, indexRow, arrRow) => elementRow.every((elementCol, indexCol, arrCol) => {
         if (board.currentCol + indexCol - 1 < 0) return false
         if (elementCol === 1 && indexCol - 1 > 0 &&
-            arrCol[indexCol] !== 1 &&
+            arrCol[indexCol - 1] !== 1 &&
             board.state[board.currentRow + indexRow][board.currentCol + indexCol - 1] === 1) return false
-        if (indexCol === 0 &&
-            elementCol === 1 && 
+        if (elementCol === 1 &&
+            indexCol === 0 &&
             board.state[board.currentRow + indexRow][board.currentCol + indexCol - 1] === 1) return false
         return true
     }))
@@ -115,11 +115,24 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
     board.checkRightSpace = (tetro) => tetro.every((elementRow, indexRow, arrRow) => elementRow.every((elementCol, indexCol, arrCol) => {
         if (board.currentCol + indexCol + 1 >= board.state[0].length) return false
         if (elementCol === 1 && indexCol + 1 < arrCol.length &&
-            arrCol[indexCol] !== 1 &&
+            arrCol[indexCol + 1] !== 1 &&
             board.state[board.currentRow + indexRow][board.currentCol + indexCol + 1] === 1) return false
-        if (indexCol === arrCol.length - 1 &&
-            elementCol === 1 && 
+        if (elementCol === 1 && 
+            indexCol + 1 === arrCol.length &&
             board.state[board.currentRow + indexRow][board.currentCol + indexCol + 1] === 1) return false
+        return true
+    }))
+
+    board.checkTurnSpace = (nextTetro, tetro) => nextTetro.every((elementRow, indexRow) => elementRow.every((elementCol, indexCol) => {
+        if (board.currentRow + indexRow >= board.state.length || 
+            board.currentCol + indexCol >= board.state[0].length || 
+            board.currentCol + indexCol < 0) return false
+        if (elementCol === 1 && 
+            board.state[board.currentRow + indexRow][board.currentCol + indexCol] === 1 && 
+            indexRow >= tetro.length && indexCol >= tetro[0].length) return false
+        if (elementCol === 1 && 
+            board.state[board.currentRow + indexRow][board.currentCol + indexCol] === 1 &&
+            tetro[indexRow][indexCol] !== 1) return false
         return true
     }))
 

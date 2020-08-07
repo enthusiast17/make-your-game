@@ -46,8 +46,8 @@ const down = (board, tetro) => {
 }
 
 const turn = (board, tetro) => {
+    if (!board.checkTurnSpace(tetro.getNextTurn(), tetro.get())) return
     board.removeTetro(tetro.get(), board.currentRow, board.currentCol)
-    if (tetro.get()[0].length === 2 && !(board.currentCol + tetro.get()[0].length + 1 <= board.state[0].length - 1)) board.left()
     tetro.turn()
     board.addTetro(tetro.get(), tetro.color)
 }

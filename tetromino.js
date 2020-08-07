@@ -33,6 +33,7 @@ const setTetro = (arr, color) => {
     tetro.backup = () => {
         tetro.status = 1
     }
+    tetro.getNextTurn = () => tetro.tetroes[tetro.status === 4 ? 0 : tetro.status]
     return tetro
 }
 
