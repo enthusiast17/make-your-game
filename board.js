@@ -42,6 +42,7 @@ export const drawBoard = (id = 'board', rowSize = 20, colSize = 10, title = '') 
             return box
         })
         const row = document.createElement('div')
+        row.id = `${acc}`
         boxes.forEach(element => row.appendChild(element))
         board.appendChild(row)
     })
@@ -55,10 +56,20 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
     const board = {
         currentRow: -1,
         currentCol: 3,  
-        state: Array(rowSize).fill(0).reduce((acc, element) => {
-            acc.push(Array(colSize).fill(0).reduce((acc, _) => acc.push(0) && acc, []))
+        state: Array(rowSize).fill(0).reduce((acc) => {
+            acc.push(Array(colSize).fill(0).reduce((acc) => acc.push({value: 0, color: 'black'}) && acc, []))
             return acc
         }, [])
+    }
+
+    board.setState = (newState) => {
+        newState.forEach((elementRow, indexRow) => elementRow.forEach((elementCol, indexCol) => {
+            const box = document.getElementById(`board-${indexRow}-${indexCol}`)
+            box.style.background = elementCol.color
+            if (elementCol.color === 'black') box.style.borderStyle = 'none'
+            else box.style.borderStyle = 'outset'
+        }))
+        board.state = newState
     }
     
     board.setCurrentRow = (row) => {
@@ -69,7 +80,7 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         board.currentCol = col
     }
 
-    board.isFirstRow = () => board.currentRow === 0
+    board.isFirstRow = () => board.currentRow === -1
 
     board.down = () => board.currentRow += 1
 
@@ -84,7 +95,7 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
                     const box = document.getElementById(`board-${board.currentRow + indexRow}-${board.currentCol + indexCol}`)
                     box.style.background = color
                     box.style.borderStyle = 'outset'
-                    board.state[board.currentRow + indexRow][board.currentCol + indexCol] = elementCol
+                    board.state[board.currentRow + indexRow][board.currentCol + indexCol] = {value: elementCol, color: color}
                 }
             })
         })
@@ -94,10 +105,10 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         if (board.currentRow + indexRow + 1 >= board.state.length) return false
         if (elementCol === 1 && indexRow + 1 < arrRow.length && 
             arrRow[indexRow + 1][indexCol] !== 1 &&
-            board.state[board.currentRow + indexRow + 1][board.currentCol + indexCol] === 1) return false
+            board.state[board.currentRow + indexRow + 1][board.currentCol + indexCol].value === 1) return false
         if (indexRow === arrRow.length - 1 && 
             elementCol === 1 && 
-            board.state[board.currentRow + indexRow + 1][board.currentCol + indexCol] === 1) return false
+            board.state[board.currentRow + indexRow + 1][board.currentCol + indexCol].value === 1) return false
         return true
     }))
 
@@ -105,10 +116,10 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         if (board.currentCol + indexCol - 1 < 0) return false
         if (elementCol === 1 && indexCol - 1 >= 0 &&
             arrCol[indexCol - 1] !== 1 &&
-            board.state[board.currentRow + indexRow][board.currentCol + indexCol - 1] === 1) return false
+            board.state[board.currentRow + indexRow][board.currentCol + indexCol - 1].value === 1) return false
         if (elementCol === 1 &&
             indexCol === 0 &&
-            board.state[board.currentRow + indexRow][board.currentCol + indexCol - 1] === 1) return false
+            board.state[board.currentRow + indexRow][board.currentCol + indexCol - 1].value === 1) return false
         return true
     }))
 
@@ -116,10 +127,10 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         if (board.currentCol + indexCol + 1 >= board.state[0].length) return false
         if (elementCol === 1 && indexCol + 1 < arrCol.length &&
             arrCol[indexCol + 1] !== 1 &&
-            board.state[board.currentRow + indexRow][board.currentCol + indexCol + 1] === 1) return false
+            board.state[board.currentRow + indexRow][board.currentCol + indexCol + 1].value === 1) return false
         if (elementCol === 1 && 
             indexCol + 1 === arrCol.length &&
-            board.state[board.currentRow + indexRow][board.currentCol + indexCol + 1] === 1) return false
+            board.state[board.currentRow + indexRow][board.currentCol + indexCol + 1].value === 1) return false
         return true
     }))
 
@@ -128,10 +139,10 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
             board.currentCol + indexCol >= board.state[0].length || 
             board.currentCol + indexCol < 0) return false
         if (elementCol === 1 && 
-            board.state[board.currentRow + indexRow][board.currentCol + indexCol] === 1 && 
+            board.state[board.currentRow + indexRow][board.currentCol + indexCol].value === 1 && 
             indexRow >= tetro.length && indexCol >= tetro[0].length) return false
         if (elementCol === 1 && 
-            board.state[board.currentRow + indexRow][board.currentCol + indexCol] === 1 &&
+            board.state[board.currentRow + indexRow][board.currentCol + indexCol].value === 1 &&
             tetro[indexRow][indexCol] !== 1) return false
         return true
     }))
@@ -143,10 +154,34 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
                     const box = document.getElementById(`board-${row + indexRow}-${col + indexCol}`)
                     box.style.background = 'black'
                     box.style.borderStyle = 'none'
-                    board.state[row + indexRow][col + indexCol] = 0
+                    board.state[row + indexRow][col + indexCol] = {value: 0, color: 'black'}
                 }
             })
         })
+    }
+
+    board.checkScoreLines = () => board.state.some((elementRow) => elementRow.every((elementCol) => elementCol.value === 1))
+
+    board.getScoreLines = () => {
+        const lines = {count: 0}
+
+        lines.add = (index) => lines[index] = !(index in lines) ? 1 : lines[index] + 1
+    
+        const filtered = board.state.filter((elementRow, indexRow) => {
+            if (elementRow.every((element) => element.value === 1)) {
+                lines.add(`${indexRow + lines.count}`)
+                lines.count += 1
+                return false
+            }
+            return true
+        })
+
+        board.setState([...Array(lines.count).fill(0).reduce((acc) => {
+            acc.push(Array(colSize).fill(0).reduce((acc) => acc.push({value: 0, color: 'black'}) && acc, []))
+            return acc
+        }, []), ...filtered])
+
+        return lines
     }
     return board
 }

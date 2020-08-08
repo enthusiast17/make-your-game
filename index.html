@@ -23,14 +23,15 @@
             import {setController} from './controller.js'
             import {setGame} from './game.js'
             import {setRandomizer} from './randomizer.js'
+            import {setScore, drawScore} from './score.js'
+            drawScore()
             drawBoard('board') // Board
             drawBoard('next-tetromino', 2, 4, 'Next') // Next
             const board = setBoard()
             const tetroes = allTetroes()
             const randomizer = setRandomizer(tetroes)
-            if (randomizer.current.get().lenght === 3) board.setCurrentRow(-2)
-            else board.setCurrentRow(-1)
-            const game = setGame(board, randomizer)
+            const score = setScore()
+            const game = setGame(board, randomizer, score)
             setController(board, randomizer)
             game.start()
         </script>
