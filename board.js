@@ -165,12 +165,14 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
     board.getScoreLines = () => {
         const lines = {count: 0}
 
-        lines.add = (index) => lines[index] = !(index in lines) ? 1 : lines[index] + 1
+        const add = (index) => {
+            lines[index] = (lines[index] || 0) + 1
+            lines.count += (lines[index] || 0)
+        }
     
         const filtered = board.state.filter((elementRow, indexRow) => {
             if (elementRow.every((element) => element.value === 1)) {
-                lines.add(`${indexRow + lines.count}`)
-                lines.count += 1
+                add(`${indexRow + lines.count}`)
                 return false
             }
             return true

@@ -1,8 +1,8 @@
 export const setScore = () => {
     const score = {points: 0}
     
-    score.setPoints = (lines) => {
-        switch (lines) {
+    score.updateScore = (inputLines) => {
+        switch (inputLines) {
             case 1:
                 score.points += 40
                 break
@@ -23,6 +23,7 @@ export const setScore = () => {
 
 export const drawScore = () => {
     const container = document.createElement('div')
+    container.id = 'score-level-lines'
     const header = document.createElement('p')
     header.style.margin = '0px'
     header.style.textAlign = 'center'

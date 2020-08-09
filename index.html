@@ -24,14 +24,20 @@
             import {setGame} from './game.js'
             import {setRandomizer} from './randomizer.js'
             import {setScore, drawScore} from './score.js'
+            import {setLevel, drawLevel} from './level.js'
+            import {setLines, drawLines} from './lines.js'
             drawScore()
+            drawLevel()
+            drawLines()
             drawBoard('board') // Board
             drawBoard('next-tetromino', 2, 4, 'Next') // Next
             const board = setBoard()
             const tetroes = allTetroes()
             const randomizer = setRandomizer(tetroes)
             const score = setScore()
-            const game = setGame(board, randomizer, score)
+            const level = setLevel()
+            const lines = setLines()
+            const game = setGame(board, randomizer, score, level, lines)
             setController(board, randomizer)
             game.start()
         </script>
