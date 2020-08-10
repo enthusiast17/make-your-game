@@ -167,12 +167,12 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
 
         const add = (index) => {
             lines[index] = (lines[index] || 0) + 1
-            lines.count += (lines[index] || 0)
+            lines.count = Object.entries(lines).reduce((acc, [k, v]) => k !== 'count' ? acc + v : acc, 0)
         }
     
         const filtered = board.state.filter((elementRow, indexRow) => {
             if (elementRow.every((element) => element.value === 1)) {
-                add(`${indexRow + lines.count}`)
+                add(`${indexRow - lines.count}`)
                 return false
             }
             return true

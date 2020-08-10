@@ -6,7 +6,6 @@ export const setGame = (board, randomizer, score, level, lines) => {
             board.down()
             board.removeTetro(randomizer.current.get())
             board.addTetro(randomizer.current.get(), randomizer.current.color)
-            console.log(level.frame)
             timeout = setTimeout(() => window.requestAnimationFrame(start), level.getSecPerGrid())
         } else {
             if (board.isFirstRow()) {
@@ -24,8 +23,8 @@ export const setGame = (board, randomizer, score, level, lines) => {
                         lines.updateLines(parseInt(v))
                     }
                 })
+                level.updateLevel(lines.number)
             }
-            level.updateLevel(lines.number)
             randomizer.current.backup()
             randomizer.random()
             board.setCurrentRow(-1)

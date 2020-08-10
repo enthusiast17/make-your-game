@@ -2,8 +2,8 @@ export const setLevel = () => {
     const level = {number : 0, frame: 48}
     
     level.updateLevel = (inputLines) => {
-        const calc = (level.number * 10) + 10
-        if (calc === inputLines) {
+        const calc = ((level.number * 10) + 10)
+        if (calc <= inputLines) {
             level.number += 1
             if (level.number <= 7) level.frame -= 5
             else if (level.number === 8) level.frame -= 2
