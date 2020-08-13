@@ -10,7 +10,7 @@ export const drawMenu = () => {
     <p>Keyboard commands</p>
     <p>← left → right</p>
     <p>↑ rotate ↓ down </p>
-    <p>esc - menu</p>
+    <p>esc - pause</p>
     `
     menu.appendChild(howToPlay)
     const play = document.createElement('button')

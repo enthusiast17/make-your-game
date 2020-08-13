@@ -18,6 +18,12 @@ export const setScore = () => {
         }
         document.getElementById('score').textContent = `${score.points}`
     }
+
+    score.restart = () => {
+        score.points = 0
+        document.getElementById('score').textContent = `${score.points}`
+    }
+
     return score
 }
 

@@ -17,6 +17,11 @@ export const setLevel = () => {
 
     level.getSecPerGrid = () => level.frame * 24
 
+    level.restart = () => {
+        level.number = 0
+        level.frame = 48
+        document.getElementById('level').textContent = `${level.number}`
+    }
     return level
 }
 

@@ -4,6 +4,10 @@ export const setLines = () => {
         lines.number += inputLines
         document.getElementById('lines').textContent = `${lines.number}`
     }
+    lines.restart = () => {
+        lines.number = 0
+        document.getElementById('lines').textContent = `${lines.number}`
+    }
     return lines
 }
 

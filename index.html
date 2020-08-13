@@ -30,16 +30,14 @@
             .box-background {
                 display: flex;
                 position: absolute;
-                top: 0%;
-                left: 0%;
                 width: 100%;
                 height: 100%;
                 background-color: darkgray;
             }
             .box {
                 position: absolute;
-                width: 20%;
-                height: 40%;
+                width: 350px;
+                height: 350px;
                 border: 5px solid gray;
                 background-color: black;
                 z-index: 1002;
@@ -71,6 +69,7 @@
             import {setLevel, drawLevel} from './level.js'
             import {setLines, drawLines} from './lines.js'
             import {drawMenu, setMenu} from './menu.js'
+            import {drawPauseMenu, setPauseMenu} from './pause_menu.js'
             drawScore()
             drawLevel()
             drawLines()
@@ -83,9 +82,11 @@
             const level = setLevel()
             const lines = setLines()
             const game = setGame(board, randomizer, score, level, lines)
-            setController(board, randomizer)
             drawMenu()
             setMenu(game)
+            drawPauseMenu()
+            setPauseMenu(game)
+            setController(game, board, randomizer)
         </script>
     </body>
 </html>

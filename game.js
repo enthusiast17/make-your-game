@@ -25,7 +25,7 @@ export const setGame = (board, randomizer, score, level, lines) => {
                 })
                 level.updateLevel(lines.number)
             }
-            randomizer.current.backup()
+            randomizer.current.restart()
             randomizer.random()
             board.setCurrentRow(-1)
             board.setCurrentCol(3)
@@ -40,6 +40,17 @@ export const setGame = (board, randomizer, score, level, lines) => {
     game.stop = () => {
         window.cancelAnimationFrame(start)
         clearTimeout(timeout)
+    }
+
+    game.exit = () => {
+        board.setState(board.restartState())
+        randomizer.current.restart()
+        randomizer.random()
+        board.setCurrentRow(-1)
+        board.setCurrentCol(3)
+        score.restart()
+        level.restart()
+        lines.restart()
     }
 
     return game

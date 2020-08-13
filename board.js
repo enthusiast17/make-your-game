@@ -62,6 +62,11 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         }, [])
     }
 
+    board.restartState = () => Array(rowSize).fill(0).reduce((acc) => {
+        acc.push(Array(colSize).fill(0).reduce((acc) => acc.push({value: 0, color: 'black'}) && acc, []))
+        return acc
+    }, [])
+
     board.setState = (newState) => {
         newState.forEach((elementRow, indexRow) => elementRow.forEach((elementCol, indexCol) => {
             const box = document.getElementById(`board-${indexRow}-${indexCol}`)

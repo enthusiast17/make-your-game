@@ -30,7 +30,7 @@ const setTetro = (arr, color) => {
     const tetro = {status: 1, color: color, tetroes: turns(arr)}
     tetro.turn = () => tetro.status = tetro.status !== 4 ? tetro.status + 1 : 1
     tetro.get = () => tetro.tetroes[tetro.status - 1]
-    tetro.backup = () => {
+    tetro.restart = () => {
         tetro.status = 1
     }
     tetro.getNextTurn = () => tetro.tetroes[tetro.status === 4 ? 0 : tetro.status]

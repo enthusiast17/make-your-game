@@ -1,11 +1,11 @@
-export const setController = (board, randomizer) => {
+export const setController = (game, board, randomizer) => {
     document.body.addEventListener('keydown', (event) => {
         const tetro = randomizer.current
-        selectControl(board, tetro, event.code)
+        selectControl(game, board, tetro, event.code)
     })
 }
 
-const selectControl = (board, tetro, code) => {
+const selectControl = (game, board, tetro, code) => {
     switch (code) {
         case 'ArrowLeft':
             left(board, tetro)
@@ -18,6 +18,9 @@ const selectControl = (board, tetro, code) => {
             break
         case 'ArrowDown':
             down(board, tetro)
+            break
+        case 'Escape':
+            escape(game)
             break
         default:
             return
@@ -50,4 +53,19 @@ const turn = (board, tetro) => {
     board.removeTetro(tetro.get(), board.currentRow, board.currentCol)
     tetro.turn()
     board.addTetro(tetro.get(), tetro.color)
+}
+
+const escape = (game) => {
+    if (document.getElementById('menu').style.display !== 'none') return
+    const pauseMenu = document.getElementById('pause-menu')
+    const pauseMenuBackground = document.getElementById('pause-menu-background')
+    if (pauseMenu.style.display === 'none') {
+        game.stop()
+        pauseMenu.style.display = 'block'
+        pauseMenuBackground.style.display = 'block'
+    } else {
+        pauseMenu.style.display = 'none'
+        pauseMenuBackground.style.display = 'none'
+        game.start()
+    }
 }
