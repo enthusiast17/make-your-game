@@ -1,16 +1,4 @@
-export const setLines = () => {
-    const lines = {number: 0}
-    lines.updateLines = (inputLines) => {
-        lines.number += inputLines
-        document.getElementById('lines').textContent = `${lines.number}`
-    }
-    lines.restart = () => {
-        lines.number = 0
-        document.getElementById('lines').textContent = `${lines.number}`
-    }
-    return lines
-}
-
+// drawLines create DOM elements for lines box
 export const drawLines = () => {
     const container = document.getElementById('score-level-lines')
     const header = document.createElement('p')
@@ -26,4 +14,20 @@ export const drawLines = () => {
     lines.style.fontSize = '28px'
     lines.textContent = '0'
     container.appendChild(lines)
+}
+
+// setLines returns object with number of lines
+export const setLines = () => {
+    const lines = {number: 0}
+
+    lines.updateLines = (inputLines) => {
+        lines.number += inputLines
+        document.getElementById('lines').textContent = `${lines.number}`
+    }
+    
+    lines.restart = () => {
+        lines.number = 0
+        document.getElementById('lines').textContent = `${lines.number}`
+    }
+    return lines
 }

@@ -70,23 +70,29 @@
             import {setLines, drawLines} from './lines.js'
             import {drawMenu, setMenu} from './menu.js'
             import {drawPauseMenu, setPauseMenu} from './pause_menu.js'
+            import {drawStats, setStats} from './stats.js'
+            import {drawTimer, setTimer} from './timer.js'
             drawScore()
             drawLevel()
             drawLines()
             drawBoard('board') // Board
             drawBoard('next-tetromino', 2, 4, 'Next') // Next
+            drawTimer()
+            const timer = setTimer()
             const board = setBoard()
             const tetroes = allTetroes()
             const randomizer = setRandomizer(tetroes)
             const score = setScore()
             const level = setLevel()
             const lines = setLines()
-            const game = setGame(board, randomizer, score, level, lines)
+            drawStats()
+            const game = setGame(board, randomizer, score, level, lines, timer)
             drawMenu()
             setMenu(game)
             drawPauseMenu()
             setPauseMenu(game)
             setController(game, board, randomizer)
+            setStats(game)
         </script>
     </body>
 </html>

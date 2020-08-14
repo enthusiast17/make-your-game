@@ -1,3 +1,4 @@
+// drawPauseMenu create DOM elements for pause menu box
 export const drawPauseMenu = () => {
     const pauseMenu = document.createElement('div')
     pauseMenu.id = 'pause-menu'
@@ -22,6 +23,7 @@ export const drawPauseMenu = () => {
     document.body.appendChild(pauseMenuBackground)
 }
 
+// setPauseMenu add an event listener for continue and exit from pause menu
 export const setPauseMenu = (game) => {
     const pauseMenu = document.getElementById('pause-menu')
     const pauseMenuBackground = document.getElementById('pause-menu-background')

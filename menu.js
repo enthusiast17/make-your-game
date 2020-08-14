@@ -1,3 +1,4 @@
+// drawMenu create DOM elements for menu box
 export const drawMenu = () => {
     const menu = document.createElement('div')
     menu.id = 'menu'
@@ -24,6 +25,7 @@ export const drawMenu = () => {
     document.body.appendChild(menuBackground)
 }
 
+// setMenu adds an event listener for play button from menu box
 export const setMenu = (game) => {
     const play = document.getElementById('play')
     play.addEventListener('click', (event) => {

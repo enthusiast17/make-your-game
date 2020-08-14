@@ -1,3 +1,22 @@
+// drawLevel create DOM elements for level box
+export const drawLevel = () => {
+    const container = document.getElementById('score-level-lines')
+    const header = document.createElement('p')
+    header.style.margin = '0px'
+    header.style.textAlign = 'center'
+    header.style.fontSize = '28px'
+    header.textContent = 'Level'
+    container.appendChild(header)
+    const level = document.createElement('p')
+    level.id = 'level'
+    level.style.margin = '0px'
+    level.style.textAlign = 'center'
+    level.style.fontSize = '28px'
+    level.textContent = '0'
+    container.appendChild(level)
+}
+
+// setLevel returns an object with number of level and frame
 export const setLevel = () => {
     const level = {number : 0, frame: 48}
     
@@ -24,21 +43,3 @@ export const setLevel = () => {
     }
     return level
 }
-
-export const drawLevel = () => {
-    const container = document.getElementById('score-level-lines')
-    const header = document.createElement('p')
-    header.style.margin = '0px'
-    header.style.textAlign = 'center'
-    header.style.fontSize = '28px'
-    header.textContent = 'Level'
-    container.appendChild(header)
-    const level = document.createElement('p')
-    level.id = 'level'
-    level.style.margin = '0px'
-    level.style.textAlign = 'center'
-    level.style.fontSize = '28px'
-    level.textContent = '0'
-    container.appendChild(level)
-}
-

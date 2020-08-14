@@ -1,5 +1,5 @@
 // setGame returns an object with start and stop game functions
-export const setGame = (board, randomizer, score, level, lines) => {
+export const setGame = (board, randomizer, score, level, lines, timer) => {
     let timeout
     const start = () => {
         if (board.checkDownSpace(randomizer.current.get())) {
@@ -9,10 +9,13 @@ export const setGame = (board, randomizer, score, level, lines) => {
             timeout = setTimeout(() => window.requestAnimationFrame(start), level.getSecPerGrid())
         } else {
             if (board.isFirstRow()) {
-                console.log("GAME OVER")
-                console.log(board.state)
+                timer.stop()
                 window.cancelAnimationFrame(start)
                 clearTimeout(timeout)
+                document.getElementById('stats').style.display = 'block'
+                document.getElementById('stats-background').style.display = 'block'
+                document.getElementById('score-stats').textContent = `Score: ${score.points}`
+                document.getElementById('time-stats').textContent = `Time: ${timer.formatMinSec()}`
                 return
             }
             if (board.checkScoreLines()) {
@@ -35,11 +38,14 @@ export const setGame = (board, randomizer, score, level, lines) => {
 
     const game = {}
 
-    game.start = () => window.requestAnimationFrame(start)
-
+    game.start = () =>{
+        window.requestAnimationFrame(start)
+        timer.start()
+    }
     game.stop = () => {
         window.cancelAnimationFrame(start)
         clearTimeout(timeout)
+        timer.stop()
     }
 
     game.exit = () => {
@@ -51,7 +57,7 @@ export const setGame = (board, randomizer, score, level, lines) => {
         score.restart()
         level.restart()
         lines.restart()
+        timer.restart()
     }
-
     return game
 }
