@@ -16,6 +16,12 @@
                 justify-content: center; 
             }
 
+            p {
+                margin: 0;
+                font-size: 28px;
+                text-align: center;
+            }
+
             button {
                 margin: 5%;
                 width: 90%;
@@ -72,12 +78,14 @@
             import {drawPauseMenu, setPauseMenu} from './pause_menu.js'
             import {drawStats, setStats} from './stats.js'
             import {drawTimer, setTimer} from './timer.js'
+            import {drawLives} from './lives.js'
             drawScore()
             drawLevel()
             drawLines()
             drawBoard('board') // Board
-            drawBoard('next-tetromino', 2, 4, 'Next') // Next
+            drawBoard('next-time-lives', 2, 4, 'Next') // Next
             drawTimer()
+            drawLives()
             const timer = setTimer()
             const board = setBoard()
             const tetroes = allTetroes()

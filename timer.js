@@ -1,18 +1,12 @@
 // drawTimer create DOM elements for timer box
 export const drawTimer = () => {
-    const nextTetromino = document.getElementById('next-tetromino')
+    const nextTimeLives = document.getElementById('next-time-lives')
     const header = document.createElement('p')
-    header.style.margin = '0px'
-    header.style.textAlign = 'center'
-    header.style.fontSize = '28px'
     header.textContent = 'Time'
     const timer = document.createElement('p')
-    timer.style.margin = '0px'
-    timer.style.textAlign = 'center'
-    timer.style.fontSize = '28px'
     timer.innerHTML = '<label id="minutes">00</label>:<label id="seconds">00</label>'
-    nextTetromino.appendChild(header)
-    nextTetromino.appendChild(timer)
+    nextTimeLives.appendChild(header)
+    nextTimeLives.appendChild(timer)
 }
 
 // setTimer returns an object with totalSec, min and sec

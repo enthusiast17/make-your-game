@@ -21,7 +21,7 @@ const random = (max) => Math.floor(Math.random() * Math.floor(max))
 // drawNext draws next tetro
 const drawNext = (tetro) => tetro.get().forEach((elementRow, indexRow) => elementRow.forEach((elementCol, indexCol) => {
     if (elementCol === 1) {
-        const box = document.getElementById(`next-tetromino-${indexRow}-${indexCol}`)
+        const box = document.getElementById(`next-time-lives-${indexRow}-${indexCol}`)
         box.style.background = tetro.color
         box.style.borderStyle = 'outset'
     }
@@ -29,7 +29,7 @@ const drawNext = (tetro) => tetro.get().forEach((elementRow, indexRow) => elemen
 
 // clearNext clears next tetro
 const clearNext = () => Array(2).fill(Array(4).fill(0)).forEach((elementRow, indexRow) => elementRow.forEach((elementCol, indexCol) => {
-    const box = document.getElementById(`next-tetromino-${indexRow}-${indexCol}`)
+    const box = document.getElementById(`next-time-lives-${indexRow}-${indexCol}`)
     box.style.background = 'black'
     box.style.borderStyle = 'none'
 }))

@@ -18,9 +18,6 @@ export const drawBoard = (id = 'board', rowSize = 20, colSize = 10, title = '') 
     const container = document.createElement('div')
     container.id = id
     const header = document.createElement('p')
-    header.style.margin = '0px'
-    header.style.textAlign = 'center'
-    header.style.fontSize = '28px'
     header.textContent = title
     container.appendChild(header)
     container.appendChild(border(rowSize))
