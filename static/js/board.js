@@ -4,7 +4,7 @@ const border = (size) => {
         box.style.height = '25px'
         box.style.width = '25px'
         box.style.background = 'gray'
-        box.style.border = '2px outset'
+        box.style.border = '2px ridge gray'
         return box
     })
     const border = document.createElement('div')
@@ -34,7 +34,7 @@ export const drawBoard = (id, rowSize = 20, colSize = 10, title = '') => {
             box.style.height = '25px'
             box.style.width = '25px'
             box.style.background = 'black'
-            box.style.border = '2px solid gray' // Consider about this
+            box.style.border = '2px ridge gray' // Consider about this
             box.appendChild(innerBox)
             return box
         })
@@ -67,8 +67,8 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
         newState.forEach((elementRow, indexRow) => elementRow.forEach((elementCol, indexCol) => {
             const box = document.getElementById(`board-${indexRow}-${indexCol}`)
             box.style.background = elementCol.color
-            if (elementCol.color === 'black') box.style.borderStyle = 'none'
-            else box.style.borderStyle = 'outset'
+            if (elementCol.color === 'black') box.style.border = 'none'
+            else box.style.border = 'outset gray'
         }))
         board.state = newState
     }
@@ -95,7 +95,7 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
                 if (elementCol === 1 && board.currentRow + indexRow >= 0) {
                     const box = document.getElementById(`board-${board.currentRow + indexRow}-${board.currentCol + indexCol}`)
                     box.style.background = color
-                    box.style.borderStyle = 'outset'
+                    box.style.border = 'outset gray'
                     board.state[board.currentRow + indexRow][board.currentCol + indexCol] = {value: elementCol, color: color}
                 }
             })
@@ -154,7 +154,7 @@ export const setBoard = (rowSize = 20, colSize = 10) => {
                 if (elementCol === 1 && row + indexRow >= 0) {
                     const box = document.getElementById(`board-${row + indexRow}-${col + indexCol}`)
                     box.style.background = 'black'
-                    box.style.borderStyle = 'none'
+                    box.style.border = 'none'
                     board.state[row + indexRow][col + indexCol] = {value: 0, color: 'black'}
                 }
             })
