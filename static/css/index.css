@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Arcade Classic';
-    src: url('/fonts/ARCADECLASSIC.TTF');
+    src: url('/font/ARCADECLASSIC.TTF');
 }
 html {
     align-items: center;
