@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Tetris Online</title>
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+        <script type="module">
+            import {drawContainer} from '/js/container.js'
+            import {drawBoard, setBoard} from '/js/board.js'
+            import {allTetroes} from '/js/tetromino.js'
+            import {setController} from '/js/controller.js'
+            import {setGame} from '/js/game.js'
+            import {setRandomizer} from '/js/randomizer.js'
+            import {setScore, drawScore} from '/js/score.js'
+            import {setLevel, drawLevel} from '/js/level.js'
+            import {setLines, drawLines} from '/js/lines.js'
+            import {drawMenu, setMenu} from '/js/menu.js'
+            import {drawPauseMenu, setPauseMenu} from '/js/pause_menu.js'
+            import {drawStats, setStats} from '/js/stats.js'
+            import {drawTimer, setTimer} from '/js/timer.js'
+            import {drawLives, setLives} from '/js/lives.js'
+
+            const SCORE_LEVEL_LINES = 'score-level-lines'
+            const BOARD = 'board'
+            const NEXT_TIMER_LIVES = 'next-timer-lives'
+
+            /*
+                Score, level and lines container
+            */
+            drawContainer(SCORE_LEVEL_LINES)
+            drawScore()
+            drawLevel()
+            drawLines()
+
+            /*
+                Board container
+            */
+            drawContainer(BOARD)
+            drawBoard(BOARD)
+
+            /*
+               Next tetromino, timer, lives container
+            */
+            drawContainer(NEXT_TIMER_LIVES)
+            drawBoard(NEXT_TIMER_LIVES, 2, 4, 'Next') 
+            drawTimer()
+            drawLives()
+
+            /*
+                Game engine implementing
+            */
+            const timer = setTimer()
+            const board = setBoard()
+            const tetroes = allTetroes()
+            const randomizer = setRandomizer(tetroes)
+            const score = setScore()
+            const level = setLevel()
+            const lines = setLines()
+            const lives = setLives()
+            drawStats()
+            const game = setGame(board, randomizer, score, level, lines, timer, lives)
+            drawMenu()
+            setMenu(game)
+            drawPauseMenu()
+            setPauseMenu(game)
+            setController(game, board, randomizer)
+            setStats(game)
+        </script>
+    </body>
+</html>
