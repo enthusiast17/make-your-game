@@ -1,5 +1,5 @@
 // setGame returns an object with start and stop game functions
-export const setGame = (board, randomizer, score, level, lines, timer) => {
+export const setGame = (board, randomizer, score, level, lines, timer, lives) => {
     let timeout
     const start = () => {
         if (board.checkDownSpace(randomizer.current.get())) {
@@ -9,14 +9,27 @@ export const setGame = (board, randomizer, score, level, lines, timer) => {
             timeout = setTimeout(() => window.requestAnimationFrame(start), level.getSecPerGrid())
         } else {
             if (board.isFirstRow()) {
-                timer.stop()
-                window.cancelAnimationFrame(start)
-                clearTimeout(timeout)
-                document.getElementById('stats').style.display = 'block'
-                document.getElementById('stats-background').style.display = 'block'
-                document.getElementById('score-stats').textContent = `Score: ${score.points}`
-                document.getElementById('time-stats').textContent = `Time: ${timer.formatMinSec()}`
-                return
+                if (lives.isLivesExists()) {
+                    timer.stop()
+                    board.setState(board.restartState())
+                    randomizer.current.restart()
+                    randomizer.random()
+                    board.setCurrentRow(-1)
+                    board.setCurrentCol(3)
+                    level.restart()
+                    lines.restart()
+                    timer.restart()
+                    lives.updateLives()
+                } else {
+                    timer.stop()
+                    window.cancelAnimationFrame(start)
+                    clearTimeout(timeout)
+                    document.getElementById('stats').style.display = 'block'
+                    document.getElementById('stats-background').style.display = 'block'
+                    document.getElementById('score-stats').textContent = `Score: ${score.points}`
+                    document.getElementById('time-stats').textContent = `Time: ${timer.formatMinSec()}`
+                    return
+                }
             }
             if (board.checkScoreLines()) {
                 const scoreLines = board.getScoreLines()
@@ -58,6 +71,7 @@ export const setGame = (board, randomizer, score, level, lines, timer) => {
         level.restart()
         lines.restart()
         timer.restart()
+        lives.restart()
     }
     return game
 }

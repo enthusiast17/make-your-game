@@ -1,8 +1,8 @@
 // drawTimer create DOM elements for timer box
 export const drawTimer = () => {
-    const nextTimeLives = document.getElementById('next-time-lives')
+    const nextTimeLives = document.getElementById('next-timer-lives')
     const header = document.createElement('p')
-    header.textContent = 'Time'
+    header.textContent = 'Timer'
     const timer = document.createElement('p')
     timer.innerHTML = '<label id="minutes">00</label>:<label id="seconds">00</label>'
     nextTimeLives.appendChild(header)

@@ -17,11 +17,11 @@
             import {drawPauseMenu, setPauseMenu} from './pause_menu.js'
             import {drawStats, setStats} from './stats.js'
             import {drawTimer, setTimer} from './timer.js'
-            import {drawLives} from './lives.js'
+            import {drawLives, setLives} from './lives.js'
 
             const SCORE_LEVEL_LINES = 'score-level-lines'
             const BOARD = 'board'
-            const NEXT_TIME_LIVES = 'next-time-lives'
+            const NEXT_TIMER_LIVES = 'next-timer-lives'
 
             /*
                 Score, level and lines container
@@ -40,8 +40,8 @@
             /*
                Next tetromino, timer, lives container
             */
-            drawContainer(NEXT_TIME_LIVES)
-            drawBoard(NEXT_TIME_LIVES, 2, 4, 'Next') 
+            drawContainer(NEXT_TIMER_LIVES)
+            drawBoard(NEXT_TIMER_LIVES, 2, 4, 'Next') 
             drawTimer()
             drawLives()
 
@@ -55,8 +55,9 @@
             const score = setScore()
             const level = setLevel()
             const lines = setLines()
+            const lives = setLives()
             drawStats()
-            const game = setGame(board, randomizer, score, level, lines, timer)
+            const game = setGame(board, randomizer, score, level, lines, timer, lives)
             drawMenu()
             setMenu(game)
             drawPauseMenu()
