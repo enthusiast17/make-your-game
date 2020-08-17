@@ -1,7 +1,6 @@
 // drawScore create DOM elements for score box
 export const drawScore = () => {
-    const container = document.createElement('div')
-    container.id = 'score-level-lines'
+    const container = document.getElementById('score-level-lines')
     const header = document.createElement('p')
     header.textContent = 'Score'
     container.appendChild(header)
@@ -9,7 +8,6 @@ export const drawScore = () => {
     score.id = 'score'
     score.textContent = '0'
     container.appendChild(score)
-    document.body.appendChild(container)
 }
 
 // setScore returns an object with number of points

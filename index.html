@@ -66,6 +66,7 @@
     </head>
     <body>
         <script type="module">
+            import {drawContainer} from './container.js'
             import {drawBoard, setBoard} from './board.js'
             import {allTetroes} from './tetromino.js'
             import {setController} from './controller.js'
@@ -79,13 +80,36 @@
             import {drawStats, setStats} from './stats.js'
             import {drawTimer, setTimer} from './timer.js'
             import {drawLives} from './lives.js'
+
+            const SCORE_LEVEL_LINES = 'score-level-lines'
+            const BOARD = 'board'
+            const NEXT_TIME_LIVES = 'next-time-lives'
+
+            /*
+                Score, level and lines container
+            */
+            drawContainer(SCORE_LEVEL_LINES)
             drawScore()
             drawLevel()
             drawLines()
-            drawBoard('board') // Board
-            drawBoard('next-time-lives', 2, 4, 'Next') // Next
+
+            /*
+                Board container
+            */
+            drawContainer(BOARD)
+            drawBoard(BOARD)
+
+            /*
+               Next tetromino, timer, lives container
+            */
+            drawContainer(NEXT_TIME_LIVES)
+            drawBoard(NEXT_TIME_LIVES, 2, 4, 'Next') 
             drawTimer()
             drawLives()
+
+            /*
+                Game engine implementing
+            */
             const timer = setTimer()
             const board = setBoard()
             const tetroes = allTetroes()

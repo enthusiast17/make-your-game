@@ -14,9 +14,9 @@ const border = (size) => {
 }
 
 // drawBoard draws board for tetris
-export const drawBoard = (id = 'board', rowSize = 20, colSize = 10, title = '') => {
-    const container = document.createElement('div')
-    container.id = id
+export const drawBoard = (id, rowSize = 20, colSize = 10, title = '') => {
+    if (id === undefined) return
+    const container = document.getElementById(id)
     const header = document.createElement('p')
     header.textContent = title
     container.appendChild(header)
@@ -45,7 +45,6 @@ export const drawBoard = (id = 'board', rowSize = 20, colSize = 10, title = '') 
     })
     container.appendChild(board)
     container.appendChild(border(rowSize))
-    document.body.appendChild(container)
 }
 
 // setBoard return a board's object with funcs
