@@ -1,3 +1,4 @@
+// drawContainer create DOM element (container) for specific elements
 export const drawContainer = (id) => {
     if (id === undefined) return
     
