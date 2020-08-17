@@ -4,6 +4,7 @@ export const drawScore = () => {
     const header = document.createElement('p')
     header.textContent = 'Score'
     container.appendChild(header)
+    
     const score = document.createElement('p')
     score.id = 'score'
     score.textContent = '0'

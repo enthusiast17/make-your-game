@@ -4,21 +4,26 @@ export const drawPauseMenu = () => {
     pauseMenu.id = 'pause-menu'
     pauseMenu.className = 'box'
     pauseMenu.style.display = 'none'
+
     const header = document.createElement('p')
     header.textContent = 'Pause'
     pauseMenu.appendChild(header)
+
     const continuePlay = document.createElement('button')
     continuePlay.id = 'continue'
     continuePlay.textContent = 'Continue'
     pauseMenu.appendChild(continuePlay)
+
     const exit = document.createElement('button')
     exit.id = 'exit'
     exit.textContent = 'Exit'
     pauseMenu.appendChild(exit)
+
     const pauseMenuBackground = document.createElement('div')
     pauseMenuBackground.id = 'pause-menu-background'
     pauseMenuBackground.className = 'box-background'
     pauseMenuBackground.style.display = 'none'  
+    
     document.body.appendChild(pauseMenu)
     document.body.appendChild(pauseMenuBackground)
 }

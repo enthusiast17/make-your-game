@@ -6,6 +6,7 @@ export const drawMenu = () => {
     const header = document.createElement('p')
     header.textContent = 'Tetris'
     menu.appendChild(header)
+
     const howToPlay = document.createElement('div')
     howToPlay.innerHTML = `<p>How to play?</p>
     <p>Keyboard commands</p>
@@ -14,10 +15,12 @@ export const drawMenu = () => {
     <p>esc - pause</p>
     `
     menu.appendChild(howToPlay)
+
     const play = document.createElement('button')
     play.id = 'play'
     play.textContent = 'Play'
     menu.appendChild(play)
+    
     const menuBackground = document.createElement('div')
     menuBackground.id = 'menu-background'
     menuBackground.className = 'box-background'

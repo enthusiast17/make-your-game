@@ -4,6 +4,7 @@ export const drawLevel = () => {
     const header = document.createElement('p')
     header.textContent = 'Level'
     container.appendChild(header)
+    
     const level = document.createElement('p')
     level.id = 'level'
     level.textContent = '0'

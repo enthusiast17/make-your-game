@@ -4,6 +4,7 @@ export const drawLines = () => {
     const header = document.createElement('p')
     header.textContent = 'Lines'
     container.appendChild(header)
+    
     const lines = document.createElement('p')
     lines.id = 'lines'
     lines.textContent = '0'
