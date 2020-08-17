@@ -12,6 +12,13 @@ export const setRandomizer = (tetros) => {
         randomizer.next = tetros[random(tetros.length)]
         drawNext(randomizer.next)
     }
+
+    randomizer.restart = () => {
+        clearNext()
+        randomizer.current = tetros[random(tetros.length)]
+        randomizer.next = tetros[random(tetros.length)]
+        drawNext(randomizer.next)
+    }
     return randomizer
 }
 
@@ -23,7 +30,7 @@ const drawNext = (tetro) => tetro.get().forEach((elementRow, indexRow) => elemen
     if (elementCol === 1) {
         const box = document.getElementById(`next-timer-lives-${indexRow}-${indexCol}`)
         box.style.background = tetro.color
-        box.style.borderStyle = 'outset'
+        box.style.border = 'outset gray'
     }
 }))
 

@@ -78,10 +78,10 @@ export const setGame = (board, randomizer, score, level, lines, timer, lives) =>
         timer.stop()
     }
 
-    game.exit = () => {
+    game.restart = () => {
         board.setState(board.restartState())
         randomizer.current.restart()
-        randomizer.random()
+        randomizer.restart()
         board.setCurrentRow(-1)
         board.setCurrentCol(3)
         score.restart()

@@ -16,10 +16,10 @@ export const drawMenu = () => {
     `
     menu.appendChild(howToPlay)
 
-    const play = document.createElement('button')
-    play.id = 'play'
-    play.textContent = 'Play'
-    menu.appendChild(play)
+    const playBtn = document.createElement('button')
+    playBtn.id = 'play'
+    playBtn.textContent = 'Play'
+    menu.appendChild(playBtn)
     
     const menuBackground = document.createElement('div')
     menuBackground.id = 'menu-background'

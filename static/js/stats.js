@@ -17,10 +17,10 @@ export const drawStats = () => {
     time.textContent = 'time: 0'
     time.style.fontSize = '30px'
     stats.appendChild(time)
-    const exit = document.createElement('button')
-    exit.id = 'exit-stats'
-    exit.textContent = 'Exit'
-    stats.appendChild(exit)
+    const exitBtn = document.createElement('button')
+    exitBtn.id = 'exit-stats'
+    exitBtn.textContent = 'Exit'
+    stats.appendChild(exitBtn)
     const statsBackground = document.createElement('div')
     statsBackground.id = 'stats-background'
     statsBackground.className = 'box-background'
@@ -37,7 +37,7 @@ export const setStats = (game) => {
     const stats = document.getElementById('stats')
     const statsBackground = document.getElementById('stats-background')
     exit.addEventListener('click', (event) => {
-        game.exit()
+        game.restart()
         stats.style.display = 'none'
         statsBackground.style.display = 'none'
         menu.style.display = 'block'

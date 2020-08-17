@@ -20,8 +20,8 @@ p {
 }
 
 button {
-    margin: 5%;
-    width: 90%;
+    margin: 10px;
+    width: 330px;
     font-size: 50px;
     font-family: 'Arcade Classic';
     text-align: center;
@@ -31,6 +31,8 @@ button {
 }
 
 .box-background {
+    margin: 0px;
+    padding: 0px;
     display: flex;
     position: absolute;
     width: 100%;
@@ -38,6 +40,7 @@ button {
     background-color: darkgray;
 }
 .box {
+    margin: 0px;
     position: absolute;
     width: 350px;
     height: 350px;
