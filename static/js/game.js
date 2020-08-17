@@ -18,7 +18,6 @@ export const setGame = (board, randomizer, score, level, lines, timer, lives) =>
                     else stop it and show stats menu
                 */
                 if (lives.isLivesExists()) {
-                    timer.stop()
                     board.setState(board.restartState())
                     randomizer.current.restart()
                     randomizer.random()
@@ -26,7 +25,6 @@ export const setGame = (board, randomizer, score, level, lines, timer, lives) =>
                     board.setCurrentCol(3)
                     level.restart()
                     lines.restart()
-                    timer.restart()
                     lives.updateLives()
                 } else {
                     timer.stop()
