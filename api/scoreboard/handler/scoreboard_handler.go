@@ -18,7 +18,28 @@ func NewScoreboardHandler(sr scoreboard.Repository) scoreboard.Handler {
 }
 
 func (sh *scoreboardHandler) Get(w http.ResponseWriter, r *http.Request) {
+	ct := r.Header.Get("content-type")
+	if ct != "application/json" {
+		w.WriteHeader(http.StatusUnsupportedMediaType)
+		w.Write([]byte(fmt.Sprintf("content-type: 'application/json' != '%s'", ct)))
+		return
+	}
 
+	internalErrHandler := func(w http.ResponseWriter, err error) {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(fmt.Sprintf("Error: %s", err.Error())))
+	}
+	players, errGet := sh.scoreboardRepository.Get()
+	if errGet != nil {
+		internalErrHandler(w, errGet)
+		return
+	}
+	jsonPlayers, jsonPlayersErr := json.Marshal(players)
+	if jsonPlayersErr != nil {
+		internalErrHandler(w, jsonPlayersErr)
+		return
+	}
+	w.Write(jsonPlayers)
 }
 
 func (sh *scoreboardHandler) Post(w http.ResponseWriter, r *http.Request) {
