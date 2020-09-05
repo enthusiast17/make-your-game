@@ -3,6 +3,7 @@ package db
 import (
 	"database/sql"
 
+	// Impl go-sqlite3
 	_ "github.com/mattn/go-sqlite3"
 )
 

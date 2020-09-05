@@ -6,6 +6,7 @@ import (
 
 	"database/sql"
 
+	// Impl go-sqlite3
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -13,6 +14,7 @@ type scoreboardRepository struct {
 	db *sql.DB
 }
 
+// NewScoreboardRepository returns an interface with Get and Post functions
 func NewScoreboardRepository(db *sql.DB) scoreboard.Repository {
 	return &scoreboardRepository{db: db}
 }

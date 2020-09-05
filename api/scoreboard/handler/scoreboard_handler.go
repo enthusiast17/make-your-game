@@ -13,18 +13,12 @@ type scoreboardHandler struct {
 	scoreboardRepository scoreboard.Repository
 }
 
+// NewScoreboardHandler returns an interface with Get and Post functions
 func NewScoreboardHandler(sr scoreboard.Repository) scoreboard.Handler {
 	return &scoreboardHandler{scoreboardRepository: sr}
 }
 
 func (sh *scoreboardHandler) Get(w http.ResponseWriter, r *http.Request) {
-	ct := r.Header.Get("content-type")
-	if ct != "application/json" {
-		w.WriteHeader(http.StatusUnsupportedMediaType)
-		w.Write([]byte(fmt.Sprintf("content-type: 'application/json' != '%s'", ct)))
-		return
-	}
-
 	internalErrHandler := func(w http.ResponseWriter, err error) {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(fmt.Sprintf("Error: %s", err.Error())))

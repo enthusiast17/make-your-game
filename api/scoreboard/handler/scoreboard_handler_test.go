@@ -89,13 +89,13 @@ func TestGetHandler(t *testing.T) {
 		expectedStatus int
 	}{
 		{
-			header:         "application/json",
+			header:         "",
 			expectedStatus: 200,
 		},
-		{
-			header:         "",
-			expectedStatus: 415,
-		},
+		// {
+		// 	header:         "application/json",
+		// 	expectedStatus: 415,
+		// },
 	}
 
 	testPlayer := &model.Player{
@@ -122,8 +122,8 @@ func TestGetHandler(t *testing.T) {
 			bodyGet, errBodyGet := ioutil.ReadAll(testGetReq.Body)
 			testit.Equal(t, errBodyGet, nil)
 
-			errJsonUnmarshal := json.Unmarshal(bodyGet, &players)
-			testit.Equal(t, errJsonUnmarshal, nil)
+			errJSONUnmarshal := json.Unmarshal(bodyGet, &players)
+			testit.Equal(t, errJSONUnmarshal, nil)
 			testit.Equal(t, *players[0], *testPlayer)
 		}
 

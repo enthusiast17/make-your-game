@@ -13,6 +13,10 @@ import (
 )
 
 func router(scoreboardHandler scoreboard.Handler, w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Credentials", "true")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET")
+	w.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Accept")
 	switch r.Method {
 	case "GET":
 		scoreboardHandler.Get(w, r)
@@ -41,8 +45,8 @@ func main() {
 		router(scoreboardHandler, w, r)
 	})
 
-	fmt.Println("Server is listening... http://localhost:5000/")
-	errListenAndServer := http.ListenAndServe(":5000", nil)
+	fmt.Println("Server is listening... http://localhost:4000/")
+	errListenAndServer := http.ListenAndServe(":4000", nil)
 
 	if errListenAndServer != nil {
 		log.Println(errListenAndServer)
