@@ -97,6 +97,11 @@ table {
         width: 30px;
     }
 
+    p {
+        margin: 0px;
+        color: white;
+    }
+
     .box {
         height: 18px;
         width: 18px;
@@ -116,7 +121,7 @@ table {
 
     .main-right-container {
         width: 90px;
-        padding: 1px;
+        padding-left: 2px;
         float: left;
     }
 
@@ -130,4 +135,10 @@ table {
         border: 5px solid #00994C;
         text-align: center;
     }
+
+    .next-tetromino-container {
+        margin-top: 2px;
+        border: 5px solid #00994C;
+    }
+    
 }
