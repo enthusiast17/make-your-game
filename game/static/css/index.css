@@ -131,14 +131,13 @@ table {
         border: 5px solid #00994C;
     }
 
-    .pause-container {
+    .main-right-container>div {
+        margin-top: 2px;
         border: 5px solid #00994C;
         text-align: center;
     }
 
-    .next-tetromino-container {
-        margin-top: 2px;
-        border: 5px solid #00994C;
+    .main-right-container>div:first-child {
+        margin-top: 0px;
     }
-    
 }

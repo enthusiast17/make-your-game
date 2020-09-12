@@ -1,7 +1,7 @@
 import {createContainer} from '../../../../lib/easy-dom/core.js'
 import {PauseContainer} from './pause_container.js'
 import {NextTetrominoContainer} from './next_tetromino_container.js'
-
+import {ScoreContainer} from './score_container.js'
 export const RightContainer = () => {
     return createContainer({
         parent: {
@@ -16,6 +16,10 @@ export const RightContainer = () => {
             },
             {
                 parent: NextTetrominoContainer(),
+                children: [],
+            },
+            {
+                parent: ScoreContainer(),
                 children: [],
             }
         ]
