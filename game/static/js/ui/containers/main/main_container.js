@@ -5,27 +5,23 @@ import {RightContainer} from './right/right_container.js'
 export const MainContainer = () => {
     return createContainer(
         {
-            parent: document.body,
+            parent: {
+                type: 'div',
+                id: 'main-container',
+                className: 'main-container',
+            },
             children: [
                 {
-                    parent: {
-                        type: 'div',
-                        id: 'main-container',
-                        className: 'main-container',
-                    },
-                    children: [
-                        {
-                            parent: LeftContainer(),
-                            children: [],
-                        },
-                        {
-                            parent: RightContainer(),
-                            children: [],
-                        }
-                    ]
+                    parent: LeftContainer(),
+                    children: [],
+                },
+                {
+                    parent: RightContainer(),
+                    children: [],
                 }
             ]
-    })
+        }
+    )
 }
 
 MainContainer()

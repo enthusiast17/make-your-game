@@ -10,10 +10,11 @@ export const PauseContainer = () => {
         children: [
             {
                 parent: {
-                    type: 'img',
-                    src: './img/pause.png',
+                    type: 'button',
+                    id: 'pause',
+                    innerHTML: `<img src="./img/pause.png">`
                 },
-                children: [],
+                children: []
             }
         ]
     })

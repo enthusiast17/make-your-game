@@ -97,6 +97,12 @@ table {
         width: 30px;
     }
 
+    button {
+        width: 100%;
+        background-color: black;
+        border: none;
+    }
+
     h3 {
         font-weight: lighter;
         margin: 0px;
@@ -147,5 +153,26 @@ table {
 
     .main-right-container>div:first-child {
         margin-top: 0px;
+    }
+
+    .footer-container>div {
+        margin: 10px;
+        float: left;
+        border: 4px solid #00994C;
+    }
+
+    .footer-container img {
+        height: 40px;
+        width: 40px;
+    }
+
+    .footer-container {
+        height: 100%;
+        padding: 0px;
+        display: block;
+    }
+
+    .screen-container {
+        display: inline-block;
     }
 }
