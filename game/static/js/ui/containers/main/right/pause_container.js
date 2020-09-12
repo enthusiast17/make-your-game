@@ -1,4 +1,4 @@
-import {createContainer, getContainer} from '../../../../lib/easy-dom/core.js'
+import {createContainer} from '../../../../lib/easy-dom/core.js'
 
 export const PauseContainer = () => {
     return createContainer({

@@ -10,7 +10,7 @@ export const NextTetrominoContainer = () => {
         children: [
             {
                 parent: {
-                    type: 'p',
+                    type: 'h3',
                     textContent: 'Next',
                 },
                 children: [],

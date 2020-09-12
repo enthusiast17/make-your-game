@@ -97,7 +97,14 @@ table {
         width: 30px;
     }
 
+    h3 {
+        font-weight: lighter;
+        margin: 0px;
+        color: white;
+    }
+
     p {
+        font-size: 20px;
         margin: 0px;
         color: white;
     }
@@ -128,12 +135,13 @@ table {
     .board-container {
         margin: 0px;
         padding: 0px;
-        border: 5px solid #00994C;
+        border: 4px solid #00994C;
     }
 
     .main-right-container>div {
+        background-color: black;
         margin-top: 2px;
-        border: 5px solid #00994C;
+        border: 4px solid #00994C;
         text-align: center;
     }
 

@@ -1,17 +1,17 @@
 import {createContainer} from '../../../../lib/easy-dom/core.js'
 
-export const ScoreContainer = () => {
+export const TextTemplateContainer = (container) => {
     return createContainer({
         parent: {
             type: 'div',
-            id: 'score-container',
-            className: 'score-container',
+            id: container.id,
+            className: container.id,
         },
         children: [
             {
                 parent: {
-                    type: 'p',
-                    textContent: 'Score',
+                    type: 'h3',
+                    textContent: container.h3.textContent,
                 },
                 children: [],
             },
@@ -23,8 +23,8 @@ export const ScoreContainer = () => {
                     {
                         parent: {
                             type: 'p',
-                            id: 'score',
-                            textContent: '0',
+                            id: container.p.id,
+                            innerHTML: container.p.innerHTML === undefined ? container.p.textContent : container.p.innerHTML,
                         },
                         children: []
                     }
