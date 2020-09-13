@@ -1,6 +1,7 @@
 import {createContainer} from '../../lib/easy-dom/core.js'
 import {MainContainer} from './main/main_container.js'
 import {FooterContainer} from './footer/footer_container.js'
+import {MenuContainer} from './menu/menu_container.js'
 
 
 export const ScreenContainer = () => {
@@ -15,6 +16,10 @@ export const ScreenContainer = () => {
                         className: 'screen-container',
                     },
                     children: [
+                        // {
+                        //     parent: MenuContainer(),
+                        //     children: [],
+                        // },
                         {
                             parent: MainContainer(),
                             children: [],

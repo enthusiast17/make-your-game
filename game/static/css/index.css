@@ -97,6 +97,11 @@ table {
         width: 30px;
     }
 
+    h1 {
+        margin: 0px;
+        color: white;
+    }
+
     button {
         width: 100%;
         background-color: black;
@@ -166,6 +171,12 @@ table {
         width: 40px;
     }
 
+    .footer-container button {
+        width: 100%;
+        background-color: black;
+        border: none;
+    }
+
     .footer-container {
         height: 100%;
         padding: 0px;
@@ -173,6 +184,36 @@ table {
     }
 
     .screen-container {
-        display: inline-block;
+       display: inline-block;
+    }
+
+    .menu-container>#how-to-play-container {
+        padding: 10px;
+        border: 1px solid #404040;
+    }
+
+    .menu-container>#how-to-play-container>h2{
+        margin: 0px;
+        color: white;
+    }
+
+    .menu-container>#how-to-play-container>p{
+        font-weight: lighter;
+    }
+
+    .menu-container button {
+        width: 200px;
+        margin-top: 10px;
+        font-family: 'Arcade Classic';
+        font-size: 30px;
+        border: none;
+        background-color: #404040;
+        color: white;
+    }
+
+    .menu-container {
+        padding: 30px;
+        border: 4px solid #00994C;
+        background-color: black;
     }
 }
