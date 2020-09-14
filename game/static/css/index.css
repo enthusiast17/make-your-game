@@ -191,10 +191,6 @@ table {
         display: table;
     }
 
-    .main-container {
-       display: inline-block;
-    }
-
     .menu-container>#how-to-play-container {
         padding: 10px;
         border: 1px solid #404040;
@@ -224,4 +220,28 @@ table {
         border: 4px solid #00994C;
         background-color: black;
     }
+
+    .pause-menu-container button {
+        width: 200px;
+        margin-top: 10px;
+        font-family: 'Arcade Classic';
+        font-size: 30px;
+        background-color: #404040;
+        color: white;
+    }
+
+    .pause-menu-container div {
+        display: table-row;
+    }
+
+    .pause-menu-container {
+        padding: 30px;
+        border: 4px solid #00994C;
+        background-color: black;
+    }
+
+    .main-container {
+        display: inline-block;
+     }
+ 
 }
