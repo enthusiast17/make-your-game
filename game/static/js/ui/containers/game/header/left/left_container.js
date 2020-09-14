@@ -1,12 +1,12 @@
-import {createContainer} from '../../../../lib/easy-dom/core.js'
+import {createContainer} from '../../../../../lib/easy-dom/core.js'
 import {BoardContainer} from './board_container.js'
 
 export const LeftContainer = () => {
     return createContainer({
         parent: {
             type: 'div',
-            id: 'main-left-container',
-            className: 'main-left-container',
+            id: 'header-left-container',
+            className: 'header-left-container',
         },
         children: [
             {

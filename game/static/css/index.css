@@ -128,16 +128,16 @@ table {
         display: inline-block;
     }
 
-    .main-container {
+    .header-container {
         padding: 0px;
-        display: inline-block;
+        display: table-row;
     }
 
-    .main-left-container {
+    .header-left-container {
         float: left;
     }
 
-    .main-right-container {
+    .header-right-container {
         width: 90px;
         padding-left: 2px;
         float: left;
@@ -149,21 +149,26 @@ table {
         border: 4px solid #00994C;
     }
 
-    .main-right-container>div {
+    .header-right-container>div {
         background-color: black;
         margin-top: 2px;
         border: 4px solid #00994C;
         text-align: center;
     }
 
-    .main-right-container>div:first-child {
+    .header-right-container>div:first-child {
         margin-top: 0px;
     }
 
     .footer-container>div {
-        margin: 10px;
+        margin-top: 10px;
+        margin-right: 20px;
         float: left;
         border: 4px solid #00994C;
+    }
+
+    .footer-container>div:last-child {
+        margin-right: 0px;
     }
 
     .footer-container img {
@@ -178,12 +183,15 @@ table {
     }
 
     .footer-container {
-        height: 100%;
         padding: 0px;
-        display: block;
+        display: table-row;
     }
 
-    .screen-container {
+    .game-container {
+        display: table;
+    }
+
+    .main-container {
        display: inline-block;
     }
 

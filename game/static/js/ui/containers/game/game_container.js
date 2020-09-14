@@ -1,22 +1,22 @@
 import {createContainer} from '../../../lib/easy-dom/core.js'
-import {LeftContainer} from './left/left_container.js'
-import {RightContainer} from './right/right_container.js'
+import {HeaderContainer} from './header/header_container.js'
+import {FooterContainer} from './footer/footer_container.js'
 
-export const MainContainer = () => {
+export const GameContainer = () => {
     return createContainer(
         {
             parent: {
                 type: 'div',
-                id: 'main-container',
-                className: 'main-container',
+                id: 'game-container',
+                className: 'screen-container',
             },
             children: [
                 {
-                    parent: LeftContainer(),
+                    parent: HeaderContainer(),
                     children: [],
                 },
                 {
-                    parent: RightContainer(),
+                    parent: FooterContainer(),
                     children: [],
                 }
             ]

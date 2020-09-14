@@ -1,4 +1,4 @@
-import {createContainer} from '../../../lib/easy-dom/core.js'
+import {createContainer} from '../../../../lib/easy-dom/core.js'
 
 export const ButtonTemplateContainer = (container) => {
     return createContainer({

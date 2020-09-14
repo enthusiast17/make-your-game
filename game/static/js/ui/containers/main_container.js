@@ -1,10 +1,9 @@
 import {createContainer} from '../../lib/easy-dom/core.js'
-import {MainContainer} from './main/main_container.js'
-import {FooterContainer} from './footer/footer_container.js'
+import {GameContainer} from './game/game_container.js'
 import {MenuContainer} from './menu/menu_container.js'
 
 
-export const ScreenContainer = () => {
+export const MainContainer = () => {
     return createContainer(
         {
             parent: document.body,
@@ -12,8 +11,8 @@ export const ScreenContainer = () => {
                 {
                     parent: {
                         type: 'div',
-                        id: 'screen-container',
-                        className: 'screen-container',
+                        id: 'main-container',
+                        className: 'main-container',
                     },
                     children: [
                         // {
@@ -21,13 +20,9 @@ export const ScreenContainer = () => {
                         //     children: [],
                         // },
                         {
-                            parent: MainContainer(),
+                            parent: GameContainer(),
                             children: [],
                         },
-                        {
-                            parent: FooterContainer(),
-                            children: [],
-                        }
                     ]
                 }
             ]
@@ -35,4 +30,4 @@ export const ScreenContainer = () => {
     )
 }
 
-ScreenContainer()
+MainContainer()

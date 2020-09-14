@@ -1,4 +1,4 @@
-import {createContainer} from '../../../lib/easy-dom/core.js'
+import {createContainer} from '../../../../lib/easy-dom/core.js'
 import {ButtonTemplateContainer} from './button_template_container.js'
 
 export const FooterContainer = () => {
