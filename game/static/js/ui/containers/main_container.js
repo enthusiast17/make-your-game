@@ -2,6 +2,7 @@ import {createContainer} from '../../lib/easy-dom/core.js'
 import {GameContainer} from './game/game_container.js'
 import {MenuContainer} from './menu/menu_container.js'
 import {PauseMenuContainer} from './pause-menu/pause-menu-container.js'
+import {GameOverContainer} from './game-over/game_over_container.js'
 
 export const MainContainer = () => {
     return createContainer(
@@ -23,8 +24,12 @@ export const MainContainer = () => {
                         //     parent: MenuContainer(),
                         //     children: [],
                         // },
+                        // {
+                        //     parent: GameContainer(),
+                        //     children: [],
+                        // },
                         {
-                            parent: GameContainer(),
+                            parent: GameOverContainer(),
                             children: [],
                         },
                     ]
