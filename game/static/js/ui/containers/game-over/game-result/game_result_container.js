@@ -21,7 +21,7 @@ export const GameResultContainer = () => {
                     parent: {
                         type: 'p',
                         id: 'game-result-time',
-                        textContent: 'Time: 00:00'
+                        textContent: 'Time: 00:00',
                     },
                     children: [],
                 },

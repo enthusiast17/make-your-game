@@ -18,7 +18,7 @@ export const HeaderContainer = () => {
                 {
                     parent: RightContainer(),
                     children: [],
-                }
+                },
             ]
         }
     )

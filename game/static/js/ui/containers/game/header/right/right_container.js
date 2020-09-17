@@ -13,7 +13,7 @@ export const RightContainer = () => {
         children: [
             {
                 parent: PauseContainer(),
-                children: []
+                children: [],
             },
             {
                 parent: NextTetrominoContainer(),
@@ -27,8 +27,8 @@ export const RightContainer = () => {
                     },
                     p: {
                         id: 'score',
-                        textContent: '0'
-                    }
+                        textContent: '0',
+                    },
                 }),
                 children: [],
             },
@@ -40,8 +40,8 @@ export const RightContainer = () => {
                     },
                     p: {
                         id: 'level',
-                        textContent: '0'
-                    }
+                        textContent: '0',
+                    },
                 }),
                 children: [],
             },
@@ -53,8 +53,8 @@ export const RightContainer = () => {
                     },
                     p: {
                         id: 'lines',
-                        textContent: '0'
-                    }
+                        textContent: '0',
+                    },
                 }),
                 children: [],
             },
@@ -67,7 +67,7 @@ export const RightContainer = () => {
                     p: {
                         id: 'timer',
                         innerHTML: '<label id="minutes">00</label>:<label id="seconds">00</label>',
-                    }
+                    },
                 }),
                 children: [],
             },
@@ -80,7 +80,7 @@ export const RightContainer = () => {
                     p: {
                         id: 'lives',
                         textContent: '3',
-                    }
+                    },
                 }),
                 children: [],
             }

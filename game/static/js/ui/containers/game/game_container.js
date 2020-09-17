@@ -8,7 +8,7 @@ export const GameContainer = () => {
             parent: {
                 type: 'div',
                 id: 'game-container',
-                className: 'screen-container',
+                className: 'game-container',
             },
             children: [
                 {

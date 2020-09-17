@@ -12,7 +12,7 @@ export const PauseMenuContainer = () => {
                 {
                     parent: {
                         type: 'h1',
-                        textContent: 'Pause'
+                        textContent: 'Pause',
                     },
                     children: [],
                 },
@@ -50,7 +50,7 @@ export const PauseMenuContainer = () => {
                 },
                 {
                     parent: {
-                        type: 'div'
+                        type: 'div',
                     }, 
                     children: [
                         {

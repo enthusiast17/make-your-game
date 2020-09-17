@@ -5,6 +5,9 @@ import {PauseMenuContainer} from './pause-menu/pause-menu-container.js'
 import {GameOverContainer} from './game-over/game_over_container.js'
 
 export const MainContainer = () => {
+    GameContainer()
+    PauseMenuContainer()
+    GameOverContainer()
     return createContainer(
         {
             parent: document.body,
@@ -16,20 +19,8 @@ export const MainContainer = () => {
                         className: 'main-container',
                     },
                     children: [
-                        // {
-                        //     parent: PauseMenuContainer(),
-                        //     children: [],
-                        // },
-                        // {
-                        //     parent: MenuContainer(),
-                        //     children: [],
-                        // },
-                        // {
-                        //     parent: GameContainer(),
-                        //     children: [],
-                        // },
                         {
-                            parent: GameOverContainer(),
+                            parent: MenuContainer(),
                             children: [],
                         },
                     ]

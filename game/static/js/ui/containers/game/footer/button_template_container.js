@@ -12,9 +12,9 @@ export const ButtonTemplateContainer = (container) => {
                 parent: {
                     type: 'button',
                     id: container.button.id,
-                    innerHTML: `<img src="${container.img.src}">`
+                    innerHTML: `<img src="${container.img.src}">`,
                 },
-                children: []
+                children: [],
             }
         ]
     })

@@ -13,7 +13,7 @@ export const GameOverContainer = () => {
                 {
                     parent: {
                         type: 'h1',
-                        textContent: 'Game Over'
+                        textContent: 'Game Over',
                     },
                     children: [],
                 },

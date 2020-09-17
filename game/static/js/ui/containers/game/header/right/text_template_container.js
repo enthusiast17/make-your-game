@@ -17,7 +17,7 @@ export const TextTemplateContainer = (container) => {
             },
             {
                 parent: {
-                    type: 'div'
+                    type: 'div',
                 },
                 children: [
                     {
@@ -26,7 +26,7 @@ export const TextTemplateContainer = (container) => {
                             id: container.p.id,
                             innerHTML: container.p.innerHTML === undefined ? container.p.textContent : container.p.innerHTML,
                         },
-                        children: []
+                        children: [],
                     }
                 ]
             }

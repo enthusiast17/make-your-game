@@ -1,4 +1,5 @@
 import {createContainer} from '../../../lib/easy-dom/core.js'
+import {route} from '../../../lib/easy-dom/route.js'
 
 export const MenuContainer = () => {
     return createContainer(

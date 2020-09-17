@@ -11,7 +11,7 @@ export const LeftContainer = () => {
         children: [
             {
                 parent: BoardContainer(20, 10),
-                children: []
+                children: [],
             }
         ]
     })

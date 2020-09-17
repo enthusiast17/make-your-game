@@ -18,7 +18,7 @@ export const FooterContainer = () => {
                                 id: 'left-btn'
                             },
                             img: {
-                                src: './img/left.png'
+                                src: './img/left.png',
                             }
                         }
                     ),
@@ -32,7 +32,7 @@ export const FooterContainer = () => {
                                 id: 'rotate-btn'
                             },
                             img: {
-                                src: './img/rotate.png'
+                                src: './img/rotate.png',
                             }
                         }
                     ),
@@ -43,10 +43,10 @@ export const FooterContainer = () => {
                         {
                             id: 'down-btn-container',
                             button: {
-                                id: 'down-btn'
+                                id: 'down-btn',
                             },
                             img: {
-                                src: './img/down.png'
+                                src: './img/down.png',
                             }
                         }
                     ),
@@ -57,10 +57,10 @@ export const FooterContainer = () => {
                         {
                             id: 'right-btn-container',
                             button: {
-                                id: 'right-btn'
+                                id: 'right-btn',
                             },
                             img: {
-                                src: './img/right.png'
+                                src: './img/right.png',
                             }
                         }
                     ),
