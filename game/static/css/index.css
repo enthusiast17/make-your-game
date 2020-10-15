@@ -1,19 +1,15 @@
 @font-face {
     font-family: 'Arcade Classic';
-    src: url('/font/ARCADECLASSIC.TTF');
+    src: url('../font/ARCADECLASSIC.TTF');
 }
+
 html {
     align-items: center;
     font-family: 'Arcade Classic';
-    background-color: darkgray;
-}
-body {
-    display: flex;
-    flex-direction: row; 
-    justify-content: center; 
+    background-color: #404040;
 }
 
-p {
+/* p {
     margin: 0;
     font-size: 28px;
     text-align: center;
@@ -30,7 +26,31 @@ button {
     border: 5px solid gray;
 }
 
-.box-background {
+input {
+    margin: 10px;
+    width: 330px;
+    font-size: 50px;
+    font-family: 'Arcade Classic';
+    text-align: center;
+    background-color: black;
+    color: darkgray;
+    border: 5px solid gray;
+}
+
+table {
+    width: 100%;
+    font-size: 20px;
+    font-family: 'Arcade Classic';
+    text-align: center;
+    background-color: black;
+    color: darkgray;
+}
+
+.active {
+    color: red;
+} */
+
+/* .box-background {
     margin: 0px;
     padding: 0px;
     display: flex;
@@ -38,6 +58,7 @@ button {
     width: 100%;
     height: 100%;
     background-color: darkgray;
+    display: none;
 }
 .box {
     margin: 0px;
@@ -49,6 +70,7 @@ button {
     background-color: black;
     color: darkgray;
     border: 5px solid gray;
+    display: none;
 }
 .box>p {
     margin: 0;
@@ -61,4 +83,228 @@ button {
     width: 100%;
     font-size: 20px;
     text-align: center;
+} */
+
+@media (min-width:320px)  {
+    body {
+        margin: 0px;
+        display: block;
+        text-align: center;
+    }
+
+    img {
+        height: 30px;
+        width: 30px;
+    }
+
+    h1 {
+        margin: 0px;
+        color: white;
+    }
+
+    button {
+        width: 100%;
+        background-color: black;
+        border: none;
+    }
+
+    h3 {
+        margin: 0px;
+        color: white;
+    }
+
+    p {
+        font-size: 20px;
+        margin: 0px;
+        color: white;
+    }
+
+    .box {
+        height: 18px;
+        width: 18px;
+        background: black;
+        border: 1px ridge  #00994C; 
+        display: inline-block;
+    }
+
+    .header-container {
+        padding: 0px;
+        display: table-row;
+    }
+
+    .header-left-container {
+        float: left;
+    }
+
+    .header-right-container {
+        width: 90px;
+        padding-left: 2px;
+        float: left;
+    }
+
+    .board-container {
+        margin: 0px;
+        padding: 0px;
+        border: 4px solid #00994C;
+    }
+
+    .header-right-container>div {
+        background-color: black;
+        margin-top: 2px;
+        border: 4px solid #00994C;
+        text-align: center;
+    }
+
+    .header-right-container>div:first-child {
+        margin-top: 0px;
+    }
+
+    .footer-container>div {
+        margin-top: 10px;
+        margin-right: 20px;
+        float: left;
+        border: 4px solid #00994C;
+    }
+
+    .footer-container>div:last-child {
+        margin-right: 0px;
+    }
+
+    .footer-container img {
+        height: 40px;
+        width: 40px;
+    }
+
+    .footer-container button {
+        width: 100%;
+        background-color: black;
+        border: none;
+    }
+
+    .footer-container {
+        padding: 0px;
+        display: table-row;
+    }
+
+    .game-container {
+        display: table;
+    }
+
+    .game-container h3 {
+        font-weight: lighter;
+    }
+
+    .menu-container>#how-to-play-container {
+        padding: 10px;
+        border: 1px solid #404040;
+    }
+
+    .menu-container>#how-to-play-container>h2{
+        margin: 0px;
+        color: white;
+    }
+
+    .menu-container>#how-to-play-container>p{
+        font-weight: lighter;
+    }
+
+    .menu-container button {
+        width: 232px;
+        margin-top: 10px;
+        font-family: 'Arcade Classic';
+        font-size: 30px;
+        border: none;
+        background-color: #404040;
+        color: white;
+    }
+
+    .menu-container {
+        padding: 30px;
+        border: 4px solid #00994C;
+        background-color: black;
+    }
+
+    .pause-menu-container button {
+        width: 232px;
+        margin-top: 10px;
+        font-family: 'Arcade Classic';
+        font-size: 30px;
+        background-color: #404040;
+        color: white;
+    }
+
+    .pause-menu-container div {
+        display: table-row;
+    }
+
+    .pause-menu-container {
+        padding: 30px;
+        border: 4px solid #00994C;
+        background-color: black;
+    }
+
+    .game-over-container button {
+        width: 200px;
+        margin-top: 10px;
+        font-family: 'Arcade Classic';
+        font-size: 30px;
+        border: none;
+        background-color: #404040;
+        color: white;
+    }
+
+    .game-over-container>.game-result-container {
+        padding: 10px;
+        border: 1px solid #404040;
+    }
+
+    .game-over-container input {
+        width: 200px;
+        margin-top: 10px;
+        font-family: 'Arcade Classic';
+        font-size: 20px;
+        border: none;
+        background-color: #404040;
+        color: white;
+        text-align: center;       
+    }
+
+    .game-over-container>.scoreboard-container {
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid #404040;
+    }
+
+    .game-over-container>.scoreboard-container table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .game-over-container>.scoreboard-container tr {
+        text-align: center;
+    }
+
+    .game-over-container>.scoreboard-container th {
+        font-size: 18px;
+        font-weight: lighter;
+        color: white;
+    }
+
+    .game-over-container>.scoreboard-container td {
+        font-size: 13px;
+        color: white;
+        overflow-wrap: break-word;
+    }
+
+    .game-over-container {
+        padding: 30px;
+        border: 4px solid #00994C;
+        background-color: black;
+    }
+
+    .main-container {
+        width: 300px;
+        display: inline-block;
+    }
+ 
 }
