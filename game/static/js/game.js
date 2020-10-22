@@ -34,6 +34,12 @@ export const setGame = (board, randomizer, score, level, lines, timer, lives) =>
                     document.getElementById('stats-background').style.display = 'block'
                     document.getElementById('score-stats').textContent = `Score: ${score.points}`
                     document.getElementById('time-stats').textContent = `Time: ${timer.formatMinSec()}`
+                    if (score.points == 0) {
+                        document.getElementById('user-name').style.display = 'none'
+                        document.getElementById('enter-user-name').style.display = 'none'
+                    } else {
+                        document.getElementById('user-name').style.display = 'block'
+                    }
                     return
                 }
             }

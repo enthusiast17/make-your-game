@@ -11,6 +11,8 @@ body {
     display: flex;
     flex-direction: row; 
     justify-content: center; 
+    margin: 0px;
+    padding: 0px;
 }
 
 p {
@@ -19,12 +21,26 @@ p {
     text-align: center;
 }
 
-button {
-    margin: 10px;
-    width: 330px;
-    font-size: 50px;
-    font-family: 'Arcade Classic';
+table {
+    margin: 0;
+    width: 100%;
+    border-collapse: collapse;
+    color: darkgray;
+    font-size: 20px;
     text-align: center;
+}
+
+th, td {
+    border: 2px solid darkgray
+}
+
+.box {
+    margin: 0px;
+    position: absolute;
+    width: 350px;
+    height: 400px;
+    z-index: 1002;
+    overflow: auto;
     background-color: black;
     color: darkgray;
     border: 5px solid gray;
@@ -39,17 +55,7 @@ button {
     height: 100%;
     background-color: darkgray;
 }
-.box {
-    margin: 0px;
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    z-index: 1002;
-    overflow: auto;
-    background-color: black;
-    color: darkgray;
-    border: 5px solid gray;
-}
+
 .box>p {
     margin: 0;
     width: 100%;
@@ -62,3 +68,15 @@ button {
     font-size: 20px;
     text-align: center;
 }
+
+button, input {
+    margin: 0px 10px 5px 10px;
+    width: 330px;
+    font-size: 50px;
+    font-family: 'Arcade Classic';
+    text-align: center;
+    background-color: black;
+    color: darkgray;
+    border: 5px solid gray;
+}
+

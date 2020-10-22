@@ -15,19 +15,23 @@ import (
 func router(scoreboardHandler scoreboard.Handler, w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Credentials", "true")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, GET")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
 	w.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Accept")
+	fmt.Println(r, r.Method, r.Referer(), r.Host)
 	switch r.Method {
 	case "GET":
 		scoreboardHandler.Get(w, r)
-		return
 	case "POST":
 		scoreboardHandler.Post(w, r)
-		return
+	case "OPTIONS":
+		if r.Referer()[7:len(r.Referer())-5] == r.Host[:len(r.Host)-4] {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+		fallthrough
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		w.Write([]byte("method not allowed"))
-		return
 	}
 }
 

@@ -3,6 +3,7 @@ export const drawMenu = () => {
     const menu = document.createElement('div')
     menu.id = 'menu'
     menu.className = 'box'
+
     const header = document.createElement('p')
     header.textContent = 'Tetris'
     menu.appendChild(header)
@@ -20,6 +21,11 @@ export const drawMenu = () => {
     playBtn.id = 'play'
     playBtn.textContent = 'Play'
     menu.appendChild(playBtn)
+
+    const statBtn = document.createElement('button')
+    statBtn.id = 'scoreboard'
+    statBtn.textContent = 'scoreboard'
+   /* menu.appendChild(statBtn)*/
     
     const menuBackground = document.createElement('div')
     menuBackground.id = 'menu-background'
