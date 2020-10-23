@@ -18,8 +18,6 @@ export const drawStats = () => {
     time.style.fontSize = '30px'
     stats.appendChild(time)
 
-    /*const form = document.createElement('form')*/
-
     const record = document.createElement('p')
     record.id = 'enter-user-name'
     record.textContent = 'Enter your name'
@@ -38,9 +36,6 @@ export const drawStats = () => {
     exitBtn.textContent = 'Exit'
     stats.appendChild(exitBtn)
 
-    /*stats.appendChild(form)*/
-
-
     const statsBackground = document.createElement('div')
     statsBackground.id = 'stats-background'
     statsBackground.className = 'box-background'
@@ -54,12 +49,16 @@ export const setStats = async (game, timer) => {
     const exit = document.getElementById('exit-stats')
     
     exit.addEventListener('click', async (event) => {
-        bestResults()
+        
+        bestResults() // building menu with scoreboard
+
         const points = Number(document.getElementById('score-stats').textContent.replace('Score: ', ''))
+        
+        // if user has non-null result
         if (document.getElementById('user-name').style.display == 'block') {
             const userName = document.getElementById('user-name').value.toUpperCase()
                         
-            // if userName is empty - do nothing
+            // if userName is empty or too big or has spaces - do nothing
             if (userName === '' || userName.length > 10 || /\s/.test(userName)) {
                 alert("Name must be 1 to 10 letters long and can't contain spaces")
                 return
@@ -69,25 +68,26 @@ export const setStats = async (game, timer) => {
                 Name: userName,
                 Score: points,
                 Time: timer.formatMinSec(),
-              };
+            };
 
-              // add new record to server statistics
+            // add new record to server statistics
             let promise = await fetch('http://'+document.location.hostname+':4000/scoreboard', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                  },
+                },
                 body: JSON.stringify(user)
             }).catch(() => user = null)
             .then(async () => {
-                return await takeRecords()
+                return await takeRecords() // getting all records
             })
             .then((recs) => {
                 drawTable(game, recs, user)
             })
             
         } else {
-            takeRecords().then(records => {
+            takeRecords()
+            .then(records => {
                 drawTable(game, records)
             })
             .catch(() => null)
@@ -99,6 +99,8 @@ export const setStats = async (game, timer) => {
 export const drawTable = (game, records, user) => {
     console.log(records)
     console.log(user)
+
+    // if the programm didn't recieved statistics from server
     if (records === null) {
         console.log('connection lost')
         game.restart()
@@ -110,6 +112,7 @@ export const drawTable = (game, records, user) => {
         return
     }
     
+    // if user has non-null result
     if (user) {
         let percent = Math.floor(user.Score * 100 / records[0].Score)
         let position = records.filter((rec) => rec.Score == user.Score && rec.Name == user.Name)[0].Rank
@@ -132,6 +135,7 @@ export const drawTable = (game, records, user) => {
         document.getElementById('rank').textContent = congrats
     
     }
+
     game.restart()
     document.getElementById('stats').style.display = 'none'
     document.getElementById('stats-background').style.display = 'none'
@@ -141,6 +145,7 @@ export const drawTable = (game, records, user) => {
 
     fillTopList(records)
 
+    // event listener to previous page
     document.getElementById('prev').addEventListener('click', (event) => {
         let str = pageNumber.textContent.split(/\s|\//)
         
@@ -154,6 +159,7 @@ export const drawTable = (game, records, user) => {
         fillTopList(records, Number(str[1])-1)
     })
 
+    // event listener to next page
     document.getElementById('next').addEventListener('click', (event) => {
         let str = pageNumber.textContent.split(/\s|\//)
         
@@ -168,6 +174,7 @@ export const drawTable = (game, records, user) => {
     })
 }
 
+// fillTopList removes old page and builds new page with records
 const fillTopList = (records, n = 1) => {
     let tb = document.getElementById('table-body')
     if (tb) tb.parentNode.removeChild(tb)
@@ -188,6 +195,7 @@ const fillTopList = (records, n = 1) => {
     document.getElementById('pageNumber').textContent = `Page ${n}/${Math.ceil(records.length / 5)}`
 }
 
+// addEmptyRow generates empty row without record
 const addEmptyRow = () => {
     let shapka = document.createElement('tr')
     shapka.style.height = '27px'
@@ -195,6 +203,7 @@ const addEmptyRow = () => {
     return shapka
 }
 
+// newRow creates new row of the given record to the scoretable
 const newRow = (record) => {
     let shapka = document.createElement('tr')
     shapka.style.height = '27px'
@@ -222,7 +231,8 @@ const newRow = (record) => {
     return shapka
 }
 
-// takeRecords
+// takeRecords gets records from server in array and sorts it in descending order
+// After being sorted the programm adds to each record its rank
 const takeRecords = async () => {
     let allRecords = await fetch('http://'+document.location.hostname+':4000/scoreboard')
     .then((response) => response.json())
@@ -317,7 +327,6 @@ const bestResults = () => {
     const exitBtn = document.createElement('button')
     exitBtn.id = 'exit'
     exitBtn.textContent = 'Exit'
-    /*exitBtn.style.padding = '10px 0px'*/
     bestResults.appendChild(exitBtn)
 
     const bestResultsBackground = document.createElement('div')

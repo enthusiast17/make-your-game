@@ -20,35 +20,20 @@ func NewScoreboardHandler(sr scoreboard.Repository) scoreboard.Handler {
 }
 
 func (sh *scoreboardHandler) Get(w http.ResponseWriter, r *http.Request) {
-	// internalErrHandler := func(w http.ResponseWriter, err error) {
-	// 	w.WriteHeader(http.StatusInternalServerError)
-	// 	w.Write([]byte(fmt.Sprintf("Error: %s", err.Error())))
-	// }
 
 	resp, errReadFile := ioutil.ReadFile("records.txt")
-	// if errReadFile != nil {
-	fmt.Println("read file: ", errReadFile)
-	// }
+	if errReadFile != nil {
+		fmt.Println("read file: ", errReadFile)
+	}
 
 	respJSON := strings.Replace("["+strings.TrimSpace(string(resp))+"]", " ", ",", -1)
 
 	resp = []byte(respJSON)
 
 	n, err := w.Write(resp)
-	// if err != nil {
-	fmt.Println(n, err)
-	// }
-	// players, errGet := sh.scoreboardRepository.Get()
-	// if errGet != nil {
-	// 	internalErrHandler(w, errGet)
-	// 	return
-	// }
-	// jsonPlayers, jsonPlayersErr := json.Marshal(players)
-	// if jsonPlayersErr != nil {
-	// 	internalErrHandler(w, jsonPlayersErr)
-	// 	return
-	// }
-	// w.Write(jsonPlayers)
+	if err != nil {
+		fmt.Println(n, err)
+	}
 }
 
 func (sh *scoreboardHandler) Post(w http.ResponseWriter, r *http.Request) {
@@ -62,23 +47,7 @@ func (sh *scoreboardHandler) Post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// dec := json.NewDecoder(r.Body)
-	// dec.DisallowUnknownFields()
-	// var player model.Player
-	// errDec := dec.Decode(&player)
-	// // fmt.Println(player)
-	// if errDec != nil && errDec != io.EOF {
-	// 	w.WriteHeader(http.StatusBadRequest)
-	// 	w.Write([]byte(fmt.Sprintf("Error: %s", errDec.Error())))
-	// 	fmt.Println("decode: ", errDec)
-	// 	return
-	// }
-
-	// reader := dec.Buffered()
-
 	newRecord, errRead := ioutil.ReadAll(r.Body)
-	// var newRecord []byte
-	// n, errRead := reader.Read(newRecord)
 	newRecord = append(newRecord, ' ')
 	fmt.Println(errRead, string(newRecord))
 
