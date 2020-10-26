@@ -40,9 +40,12 @@ export const setGame = (board, randomizer, score, level, lines, timer, lives) =>
                     if (score.points == 0) {
                         document.getElementById('user-name').style.display = 'none'
                         document.getElementById('enter-user-name').style.display = 'none'
+                        document.getElementById('exit-stats').textContent = 'exit'
+                        
                     } else {
                         document.getElementById('user-name').style.display = 'block'
                         document.getElementById('enter-user-name').style.display = 'block'
+                        document.getElementById('exit-stats').textContent = 'submit'
                     }
                     return
                 }

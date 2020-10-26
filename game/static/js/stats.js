@@ -115,7 +115,12 @@ export const drawTable = (game, records, user) => {
     // if user has non-null result
     if (user) {
         let percent = Math.floor(user.Score * 100 / records[0].Score)
-        let position = records.filter((rec) => rec.Score == user.Score && rec.Name == user.Name)[0].Rank
+        let recordsFound = records.filter((rec) => rec.Score == user.Score && rec.Name == user.Name)
+        let position = 0
+        if (recordsFound.length > 0) {
+            position = recordsFound[0].Rank
+        }
+        
         
         switch(Number(position)%10) {
             case 1 :
