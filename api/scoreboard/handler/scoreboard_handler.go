@@ -1,34 +1,21 @@
 package handler
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"os"
-	"strings"
 
-	scoreboard ".."
+	model "../../model"
 )
 
-type scoreboardHandler struct {
-	scoreboardRepository scoreboard.Repository
-}
+// Get handles GAT-request of scoreboard
+func Get(w http.ResponseWriter, r *http.Request) {
 
-// NewScoreboardHandler returns an interface with Get and Post functions
-func NewScoreboardHandler(sr scoreboard.Repository) scoreboard.Handler {
-	return &scoreboardHandler{scoreboardRepository: sr}
-}
-
-func (sh *scoreboardHandler) Get(w http.ResponseWriter, r *http.Request) {
-
-	resp, errReadFile := ioutil.ReadFile("records.txt")
+	resp, errReadFile := ioutil.ReadFile("scoreboard/records.json")
 	if errReadFile != nil {
 		fmt.Println("read file: ", errReadFile)
 	}
-
-	respJSON := strings.Replace("["+strings.TrimSpace(string(resp))+"]", " ", ",", -1)
-
-	resp = []byte(respJSON)
 
 	n, err := w.Write(resp)
 	if err != nil {
@@ -36,7 +23,8 @@ func (sh *scoreboardHandler) Get(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (sh *scoreboardHandler) Post(w http.ResponseWriter, r *http.Request) {
+// Post handles POST-request of scoreboard
+func Post(w http.ResponseWriter, r *http.Request) {
 
 	ct := r.Header.Get("content-type")
 	fmt.Println(r.Method, ct)
@@ -51,10 +39,30 @@ func (sh *scoreboardHandler) Post(w http.ResponseWriter, r *http.Request) {
 	newRecord = append(newRecord, ' ')
 	fmt.Println(errRead, string(newRecord))
 
-	file, errOpenFile := os.OpenFile("records.txt", os.O_APPEND|os.O_WRONLY, 0777)
-	if errOpenFile != nil {
-		fmt.Println(errOpenFile)
+	var newPlayer model.Player
+	var records []model.Player
+
+	err := json.Unmarshal(newRecord, &newPlayer)
+	if err != nil {
+		fmt.Println("New: ", err)
+		return
 	}
-	file.Write(newRecord)
-	defer file.Close()
+
+	content, err := ioutil.ReadFile("scoreboard/records.json")
+	if err == nil {
+		err = json.Unmarshal(content, &records)
+		if err != nil {
+			fmt.Println("Existing: ", err)
+			return
+		}
+	}
+
+	records = append(records, newPlayer)
+
+	mRecords, err := json.Marshal(records)
+	if err != nil {
+		fmt.Println("Marshal: ", err)
+		return
+	}
+	ioutil.WriteFile("scoreboard/records.json", mRecords, 0777)
 }
