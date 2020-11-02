@@ -49,8 +49,6 @@ export const setStats = async (game, timer) => {
     const exit = document.getElementById('exit-stats')
     
     exit.addEventListener('click', async (event) => {
-        
-        bestResults() // building menu with scoreboard
 
         const points = Number(document.getElementById('score-stats').textContent.replace('Score: ', ''))
         
@@ -59,8 +57,8 @@ export const setStats = async (game, timer) => {
             const userName = document.getElementById('user-name').value.toUpperCase()
                         
             // if userName is empty or too big or has spaces - do nothing
-            if (userName === '' || userName.length > 10 || /\s/.test(userName)) {
-                alert("Name must be 1 to 10 letters long and can't contain spaces")
+            if (userName === '' || userName.length > 10 || /[^a-zа-я0-9_]/i.test(userName)) {
+                alert("Name must be 1 to 10 letters long and can contain letters of english and russian alphabet, digits and '_'")
                 return
             }
 
@@ -111,6 +109,8 @@ export const drawTable = (game, records, user) => {
         document.getElementById('menu-background').style.display = 'block'
         return
     }
+
+    bestResults() // building menu with scoreboard
     
     // if user has non-null result
     if (user) {
@@ -152,32 +152,50 @@ export const drawTable = (game, records, user) => {
 
     // event listener to previous page
     document.getElementById('prev').addEventListener('click', (event) => {
-        let str = pageNumber.textContent.split(/\s|\//)
-        
-        // if first page - do nothing
-        if (str[1] == 1) {
-            return
-        }
-
-        let tb = document.getElementById('table-body')
-        tb.parentNode.removeChild(tb)
-        fillTopList(records, Number(str[1])-1)
+        previousPage(records, pageNumber.textContent.split(/\s|\//))
     })
 
     // event listener to next page
     document.getElementById('next').addEventListener('click', (event) => {
-        let str = pageNumber.textContent.split(/\s|\//)
-        
-        // if last page - do nothing
-        if (str[1] == str[2]) {
-            return
-        }
-
-        let tb = document.getElementById('table-body')
-        tb.parentNode.removeChild(tb)
-        fillTopList(records, Number(str[1])+1)
+        nextPage(records, pageNumber.textContent.split(/\s|\//))
     })
+
+    // document.getElementById('table-body').addEventListener('keydown', (event) => {
+    //     switch (event.code) {
+    //         case 'ArrowLeft':
+    //             previousPage(records, pageNumber.textContent.split(/\s|\//))
+    //             break
+    //         case 'ArrowRight':
+    //             nextPage(records, pageNumber.textContent.split(/\s|\//))
+    //             break
+    //         default:
+    //             return
+    //     }
+    // })
 }
+
+const nextPage = (records, str) => {
+    // if last page - do nothing
+    if (str[1] == str[2]) {
+        return
+    }
+
+    let tb = document.getElementById('table-body')
+    tb.parentNode.removeChild(tb)
+    fillTopList(records, Number(str[1])+1)
+}
+
+const previousPage = (records, str) => {
+    // if first page - do nothing
+    if (str[1] == 1) {
+        return
+    }
+
+    let tb = document.getElementById('table-body')
+    tb.parentNode.removeChild(tb)
+    fillTopList(records, Number(str[1])-1)
+}
+
 
 // fillTopList removes old page and builds new page with records
 const fillTopList = (records, n = 1) => {
@@ -343,8 +361,10 @@ const bestResults = () => {
     document.body.appendChild(bestResultsBackground)
 
     exitBtn.addEventListener('click', (event) => {
-        document.getElementById('best-results').remove()
-        document.getElementById('best-results-background').remove()
+        let br = document.getElementById('best-results')
+        br.parentNode.removeChild(br)
+        let brg = document.getElementById('best-results-background')
+        brg.parentNode.removeChild(brg)
         document.getElementById('menu').style.display = 'block'
         document.getElementById('menu-background').style.display = 'block'
     })
