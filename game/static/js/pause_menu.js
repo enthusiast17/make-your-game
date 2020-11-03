@@ -38,9 +38,11 @@ export const setPauseMenu = (game) => {
     const pauseMenu = document.getElementById('pause-menu')
     const pauseMenuBackground = document.getElementById('pause-menu-background')
     const continuePlay = document.getElementById('continue')
+    const gameboard = document.getElementById('board')
     continuePlay.addEventListener('click', () => {
         pauseMenu.style.display = 'none'
         pauseMenuBackground.style.display = 'none'
+        gameboard.style.display = 'block'
         game.start()
     })
     const exit = document.getElementById('exit')
@@ -58,6 +60,7 @@ export const setPauseMenu = (game) => {
         game.restart()
         pauseMenu.style.display = 'none'
         pauseMenuBackground.style.display = 'none'
+        gameboard.style.display = 'block'
         game.start()
     })
 }

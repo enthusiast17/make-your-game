@@ -59,13 +59,16 @@ const escape = (game) => {
     if (document.getElementById('menu').style.display !== 'none') return
     const pauseMenu = document.getElementById('pause-menu')
     const pauseMenuBackground = document.getElementById('pause-menu-background')
+    const gameboard = document.getElementById('board')
     if (pauseMenu.style.display === 'none') {
         game.stop()
         pauseMenu.style.display = 'block'
         pauseMenuBackground.style.display = 'block'
+        gameboard.style.display = 'none'
     } else {
         pauseMenu.style.display = 'none'
         pauseMenuBackground.style.display = 'none'
+        gameboard.style.display = 'block'
         game.start()
     }
 }

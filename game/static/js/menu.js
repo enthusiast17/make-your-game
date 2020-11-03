@@ -40,6 +40,7 @@ export const setMenu = (game) => {
     play.addEventListener('click', (event) => {
         document.getElementById('menu').style.display = 'none'
         document.getElementById('menu-background').style.display = 'none'
+        document.getElementById('board').style.display = 'block'
         game.start()
     })
 }
