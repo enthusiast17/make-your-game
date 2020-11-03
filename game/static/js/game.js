@@ -30,6 +30,7 @@ export const setGame = (board, randomizer, score, level, lines, timer, lives) =>
                     timer.stop()
                     window.cancelAnimationFrame(engine)
                     clearTimeout(timeout)
+                    document.getElementById('board').style.display = 'none'
                     document.getElementById('stats').style.display = 'block'
                     document.getElementById('stats-background').style.display = 'block'
                     document.getElementById('score-stats').textContent = `Score: ${score.points}`
